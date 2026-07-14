@@ -1,0 +1,3 @@
+/.agents
+# Large generated image dataset (kept locally only)
+/parseq_rl_deblur_data/color_filtered/

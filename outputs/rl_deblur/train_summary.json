@@ -1,0 +1,38 @@
+{
+  "config": {
+    "dataset_dir": "outputs/rl_deblur/dataset",
+    "output_dir": "outputs/rl_deblur",
+    "epochs": 150,
+    "batch_size": 64,
+    "num_steps": 5,
+    "gamma": 0.95,
+    "lr": 0.0001,
+    "entropy_coef": 0.0002,
+    "value_coef": 0.5,
+    "channels": 64,
+    "rmc_kernel_size": 9,
+    "cer_reward_weight": 0.0,
+    "logconf_reward_weight": 0.0,
+    "ocr_checkpoint": "/content/project/outputs/refinement_finetune/best_official_parseq_anpr.pt",
+    "seed": 42,
+    "limit_train": null,
+    "limit_val": null
+  },
+  "base_val_metrics": {
+    "psnr_before": 20.06615348131832,
+    "psnr_after": 11.195374833754329,
+    "psnr_gain": -8.870778647563991
+  },
+  "best_val_psnr_gain": 2.3262174319419806,
+  "best_checkpoint": "outputs/rl_deblur/checkpoints/best_deblur_agent.pt",
+  "final_val_metrics": {
+    "epoch": 150,
+    "train_loss": -0.0006819166661918406,
+    "train_mean_episode_reward": 0.004758521236236329,
+    "train_mean_ocr_bonus": 0.0,
+    "seconds": 16.922344207763672,
+    "val_psnr_before": 20.06615348131832,
+    "val_psnr_after": 22.360821710228738,
+    "val_psnr_gain": 2.2946682289104174
+  }
+}
