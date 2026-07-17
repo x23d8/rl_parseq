@@ -1,0 +1,111 @@
+{
+  "algorithm": "candidate_set_ppo_with_oof_teacher_residual",
+  "best_validation_checkpoint": {
+    "stage": "ppo",
+    "epoch": 34,
+    "loss": 0.0036478290955225625,
+    "first_margin": 0.05,
+    "revise_margin": 0.05,
+    "samples": 397,
+    "exact_acc": 0.9345088161209067,
+    "char_acc": 0.9895865237366003,
+    "fixed": 5,
+    "broken": 2,
+    "net_fixes": 3,
+    "mean_cost": 0.0025969773299748112,
+    "stop_rate": 0.6523929471032746,
+    "revise_rate": 0.020151133501259445
+  },
+  "validation_policy": {
+    "samples": 397,
+    "exact_acc": 0.9345088161209067,
+    "char_acc": 0.9895865237366003,
+    "fixed": 5,
+    "broken": 2,
+    "net_fixes": 3,
+    "mean_cost": 0.0025969773299748112,
+    "stop_rate": 0.6523929471032746,
+    "revise_rate": 0.020151133501259445
+  },
+  "validation_teacher": {
+    "samples": 397,
+    "exact_acc": 0.9319899244332494,
+    "char_acc": 0.9886676875957121,
+    "fixed": 3,
+    "broken": 1,
+    "net_fixes": 2,
+    "mean_cost": 0.0014408060453400505,
+    "stop_rate": 0.8110831234256927,
+    "revise_rate": 0.0
+  },
+  "validation_delta_exact_vs_teacher": 0.0025188916876573986,
+  "holdout_policy": {
+    "samples": 655,
+    "exact_acc": 0.9389312977099237,
+    "char_acc": 0.9908050290861324,
+    "fixed": 11,
+    "broken": 7,
+    "net_fixes": 4,
+    "mean_cost": 0.002688549618320611,
+    "stop_rate": 0.6519083969465649,
+    "revise_rate": 0.01984732824427481
+  },
+  "holdout_teacher": {
+    "samples": 655,
+    "exact_acc": 0.9282442748091603,
+    "char_acc": 0.9885531994745731,
+    "fixed": 9,
+    "broken": 12,
+    "net_fixes": -3,
+    "mean_cost": 0.0015068702290076338,
+    "stop_rate": 0.815267175572519,
+    "revise_rate": 0.0
+  },
+  "holdout_statistics_vs_teacher": {
+    "paired_bootstrap": {
+      "delta_exact": 0.010687022900763359,
+      "delta_exact_ci95": [
+        0.0015267175572519084,
+        0.021374045801526718
+      ],
+      "delta_character": 0.0021416454622561493,
+      "delta_character_ci95": [
+        0.0007209499575911786,
+        0.003859202714164546
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 9,
+      "broken": 2,
+      "discordant": 11,
+      "p_value_exact": 0.0654296875
+    }
+  },
+  "formal_improvement_gate": {
+    "passed": false,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": true,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": false
+    }
+  },
+  "promotion_status": "experimental_not_promoted",
+  "protocol": {
+    "seed": 725,
+    "group_key": "normalized target/label",
+    "development_samples": 2615,
+    "holdout_samples": 655,
+    "development_groups": 1793,
+    "holdout_groups": 447,
+    "group_overlap": 0,
+    "oof_folds": 5,
+    "validation_role": "checkpoint_and_margin_selection; previously audited validation",
+    "holdout_role": "single locked run evaluation; excluded from teacher, BC, PPO and selection",
+    "audited_test_loaded": false
+  },
+  "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_seed_725\\best_candidate_oof_ppo.pt",
+  "test_used": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "one_shot": true,
+  "inference_may_have_started": true,
+  "claim_id": "5ff3cfe030dbba6cb5642c8551d4eb95150b1bb703a902d2b09e82e032e02cfc",
+  "evaluation_role": "locked_confirmatory",
+  "split": "external_holdout",
+  "output_directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\results\\external_locked_evaluation",
+  "manifest_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_external_holdout\\external_manifest.csv",
+  "manifest_sha256": "cbf3e3f19e287b2b087134afc34da242a45ab3246b41126dd79674dd1d5f123d",
+  "candidate_lock_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\prospective_policy.json",
+  "candidate_lock_sha256": "3c14d385ba37c0fdd35e1f068820e0d48dcad10a6d756a87c6d7298af71dd17f",
+  "checkpoint_sha256": [
+    "ee643b85b121a128d3c42d173e8011719693e86f7a60880bc27fbb76bf9eb5df",
+    "edd285f6fb18020c859c08f0f680a6c7eb47ce8ab034955f67b9f8546185aea5"
+  ],
+  "parseq_checkpoint_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+  "parseq_checkpoint_sha256": "6e9384c02b39c29c38c5ae3e12a368cd5b1c1aff37b65c8ce1d7d235421c7e24",
+  "cache_artifact_sha256": {
+    "candidate_features": "6222a9ae6256897901e42a5198c37c4b0d4b23500bfb89fffd95ea9524dfd35d",
+    "state_features": "498ab8fa9bedd9d5d0c55ae284f55ee0af3308a8ec79eb215123bde18d676c14",
+    "action_trajectories": "8f97e0fea63e087d804795f4e5f40cf461bbeccfdf50d1cad5d15b6fbcb71bce"
+  },
+  "summary_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\results\\external_locked_evaluation\\summary.json",
+  "promotion_eligible": false
+}

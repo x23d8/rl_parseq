@@ -1,0 +1,17 @@
+torch
+torchvision
+numpy
+pandas
+scikit-learn
+joblib
+Pillow
+opencv-python
+matplotlib
+seaborn
+tqdm
+ultralytics
+gradio
+pytorch-lightning
+timm
+nltk
+lmdb

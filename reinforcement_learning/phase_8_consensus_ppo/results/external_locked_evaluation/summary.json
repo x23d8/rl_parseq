@@ -1,0 +1,270 @@
+{
+  "algorithm": "dual_seed_ppo_prediction_agreement_consensus",
+  "status": "external_holdout_failed_gate",
+  "evaluation_role": "locked_confirmatory",
+  "split": "external_holdout",
+  "samples": 504,
+  "cache": {
+    "directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase8_fresh_external_cache",
+    "summary": {
+      "split": "external_holdout",
+      "samples": 504,
+      "actions": [
+        "baseline",
+        "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+        "full_z0.93_up3_clahe_clip1_tile4",
+        "unwrap_z1.00_up3_train_baseline",
+        "full_z0.85_up2_adaptive_noise_3way",
+        "full_z1.00_up2_clahe_rl_deblur_bilateral",
+        "unwrap_z0.93_up3_adaptive_noise_3way",
+        "full_z1.15_up3_train_baseline",
+        "full_z1.15_up2_train_baseline"
+      ],
+      "candidate_shape": [
+        504,
+        9,
+        781
+      ],
+      "baseline_exact": 0.8214285714285714,
+      "oracle_exact": 0.8809523809523809,
+      "oracle_gain_points": 5.952380952380953,
+      "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+      "checkpoint_sha256": "6e9384c02b39c29c38c5ae3e12a368cd5b1c1aff37b65c8ce1d7d235421c7e24",
+      "artifacts": {
+        "candidate_features": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase8_fresh_external_cache\\external_holdout_candidate_features.npz",
+          "sha256": "6222a9ae6256897901e42a5198c37c4b0d4b23500bfb89fffd95ea9524dfd35d"
+        },
+        "state_features": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase8_fresh_external_cache\\external_holdout_state_features.npz",
+          "sha256": "498ab8fa9bedd9d5d0c55ae284f55ee0af3308a8ec79eb215123bde18d676c14"
+        },
+        "action_trajectories": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase8_fresh_external_cache\\external_holdout_action_trajectories.csv",
+          "sha256": "8f97e0fea63e087d804795f4e5f40cf461bbeccfdf50d1cad5d15b6fbcb71bce"
+        }
+      },
+      "refine_iters": 2,
+      "test_loaded": false,
+      "manifest": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_external_holdout\\external_manifest.csv",
+        "sha256": "cbf3e3f19e287b2b087134afc34da242a45ab3246b41126dd79674dd1d5f123d",
+        "source_rows": 504,
+        "selected_rows": 504,
+        "external_contract": true,
+        "group_disjoint": true,
+        "input_contract": "plate_crop"
+      },
+      "group_audit": {
+        "group_key": "normalized target/label",
+        "group_overlap": 0,
+        "historical_manifest": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+          "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f",
+          "rows": 4078
+        },
+        "historical_labels_used_for_exclusion_only": true
+      },
+      "power_contract": {
+        "minimum_formal_samples": 500,
+        "actual_samples": 504,
+        "formal_ready": true,
+        "underpowered_diagnostic_override": false
+      }
+    }
+  },
+  "checkpoints": [
+    "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_ocr_guard_seed_727\\best_candidate_oof_ppo.pt",
+    "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\confirmatory_seed_728\\best_candidate_oof_ppo.pt"
+  ],
+  "candidate_lock": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\prospective_policy.json",
+    "sha256": "3c14d385ba37c0fdd35e1f068820e0d48dcad10a6d756a87c6d7298af71dd17f",
+    "status": "prospective_locked_for_fresh_external"
+  },
+  "selection_rule": "baseline unless both PPO policies predict the same non-baseline string; then use policy B action",
+  "policy_a": {
+    "samples": 504,
+    "exact_acc": 0.8432539682539683,
+    "char_acc": 0.9735336194563662,
+    "fixed": 14,
+    "broken": 3,
+    "net_fixes": 11,
+    "mean_cost": 0.0007619047619047619,
+    "stop_rate": 0.871031746031746,
+    "revise_rate": 0.013888888888888888
+  },
+  "policy_b": {
+    "samples": 504,
+    "exact_acc": 0.8333333333333334,
+    "char_acc": 0.9730567477348593,
+    "fixed": 7,
+    "broken": 1,
+    "net_fixes": 6,
+    "mean_cost": 0.0008531746031746032,
+    "stop_rate": 0.9007936507936508,
+    "revise_rate": 0.003968253968253968
+  },
+  "baseline": {
+    "samples": 504,
+    "exact_acc": 0.8214285714285714,
+    "char_acc": 0.9682880305197902,
+    "fixed": 0,
+    "broken": 0,
+    "net_fixes": 0,
+    "mean_cost": 0.0,
+    "stop_rate": 1.0,
+    "revise_rate": 0.0
+  },
+  "consensus": {
+    "samples": 504,
+    "exact_acc": 0.8313492063492064,
+    "char_acc": 0.971864568431092,
+    "fixed": 6,
+    "broken": 1,
+    "net_fixes": 5,
+    "mean_cost": 0.00020436507936507934,
+    "stop_rate": 0.9761904761904762,
+    "revise_rate": 0.0
+  },
+  "consensus_change_rate": 0.023809523809523808,
+  "statistics_vs_baseline": {
+    "paired_bootstrap": {
+      "delta_exact": 0.00992063492063492,
+      "delta_exact_ci95": [
+        0.0,
+        0.01984126984126984
+      ],
+      "delta_character": 0.003527336860670194,
+      "delta_character_ci95": [
+        0.0011849647266313934,
+        0.006366429673721331
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 6,
+      "broken": 1,
+      "discordant": 7,
+      "p_value_exact": 0.125
+    }
+  },
+  "formal_improvement_gate_vs_baseline": {
+    "passed": false,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": false,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": false
+    }
+  },
+  "descriptive_slices": {
+    "role": "descriptive_only_not_a_promotion_gate",
+    "source": {
+      "archive_plate_crops_from_coords": {
+        "samples": 136,
+        "baseline_exact": 0.6102941176470589,
+        "consensus_exact": 0.6102941176470589,
+        "consensus_character_accuracy": 0.9399477806788512,
+        "fixed": 1,
+        "broken": 1,
+        "net_fixes": 0
+      },
+      "cropped": {
+        "samples": 234,
+        "baseline_exact": 0.9529914529914529,
+        "consensus_exact": 0.9743589743589743,
+        "consensus_character_accuracy": 0.9963503649635036,
+        "fixed": 5,
+        "broken": 0,
+        "net_fixes": 5
+      },
+      "yolo_plate_dataset": {
+        "samples": 111,
+        "baseline_exact": 0.8108108108108109,
+        "consensus_exact": 0.8108108108108109,
+        "consensus_character_accuracy": 0.9655913978494624,
+        "fixed": 0,
+        "broken": 0,
+        "net_fixes": 0
+      },
+      "yolo_plate_ocr_dataset": {
+        "samples": 23,
+        "baseline_exact": 0.782608695652174,
+        "consensus_exact": 0.782608695652174,
+        "consensus_character_accuracy": 0.949238578680203,
+        "fixed": 0,
+        "broken": 0,
+        "net_fixes": 0
+      }
+    },
+    "input_transform": {
+      "crop_source_bounding_box": {
+        "samples": 111,
+        "baseline_exact": 0.8108108108108109,
+        "consensus_exact": 0.8108108108108109,
+        "consensus_character_accuracy": 0.9655913978494624,
+        "fixed": 0,
+        "broken": 0,
+        "net_fixes": 0
+      },
+      "existing_plate_crop": {
+        "samples": 393,
+        "baseline_exact": 0.8244274809160306,
+        "consensus_exact": 0.8371501272264631,
+        "consensus_character_accuracy": 0.9736519607843137,
+        "fixed": 6,
+        "broken": 1,
+        "net_fixes": 5
+      }
+    },
+    "crop_size_bucket": {
+      "min_side_32_63": {
+        "samples": 160,
+        "baseline_exact": 0.8125,
+        "consensus_exact": 0.81875,
+        "consensus_character_accuracy": 0.9732142857142857,
+        "fixed": 1,
+        "broken": 0,
+        "net_fixes": 1
+      },
+      "min_side_64_127": {
+        "samples": 135,
+        "baseline_exact": 0.8,
+        "consensus_exact": 0.7925925925925926,
+        "consensus_character_accuracy": 0.9709507042253521,
+        "fixed": 0,
+        "broken": 1,
+        "net_fixes": -1
+      },
+      "min_side_ge128": {
+        "samples": 51,
+        "baseline_exact": 0.8627450980392157,
+        "consensus_exact": 0.8627450980392157,
+        "consensus_character_accuracy": 0.9721577726218098,
+        "fixed": 0,
+        "broken": 0,
+        "net_fixes": 0
+      },
+      "min_side_lt32": {
+        "samples": 158,
+        "baseline_exact": 0.8354430379746836,
+        "consensus_exact": 0.8670886075949367,
+        "consensus_character_accuracy": 0.9711613406079501,
+        "fixed": 5,
+        "broken": 0,
+        "net_fixes": 5
+      }
+    }
+  },
+  "promotion_eligible": false,
+  "external_holdout_evaluated_once": true,
+  "audited_legacy_test_loaded": false,
+  "test_used": false,
+  "confirmatory_receipt": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\results\\fresh_locked_confirmatory_receipt.json",
+    "claim_id": "5ff3cfe030dbba6cb5642c8551d4eb95150b1bb703a902d2b09e82e032e02cfc",
+    "one_shot": true
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "contract": "phase10_domain_adaptive_development_cache_v1",
+  "test_used": false,
+  "phase9_role": "opened_failed_holdout_reclassified_as_development_only",
+  "phase9_evaluation": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\results\\external_locked_evaluation\\summary.json",
+    "sha256": "a03411d838faf5cfd94fd0f9d2e94f31df847e4e660a4fd990bf70514d3f6d4b"
+  },
+  "domain_split": {
+    "seed": 1001,
+    "selection_fraction": 0.2,
+    "adaptation_samples": 520,
+    "selection_samples": 130,
+    "group_overlap": 0
+  },
+  "mixed": {
+    "train_samples": 3281,
+    "validation_samples": 527,
+    "train_validation_group_overlap": 0,
+    "phase7_train_rows_excluded_for_validation_group_overlap": 509,
+    "train_baseline_exact": 0.858579701310576,
+    "validation_baseline_exact": 0.8121442125237192,
+    "candidate_shape_train": [
+      3281,
+      9,
+      781
+    ],
+    "candidate_shape_validation": [
+      527,
+      9,
+      781
+    ]
+  },
+  "sources": {
+    "phase7": {
+      "train_candidate_features": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache\\train_candidate_features.npz",
+        "sha256": "055ab7c56daef9458fad40cdc1ec11e45c61e7107d3849e133442549bb79c0f2"
+      },
+      "train_state_features": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache\\train_state_features.npz",
+        "sha256": "c30111da9be123758d711452a2b63329389ebee4ebed96420e4eb1adee7ad324"
+      },
+      "train_action_trajectories": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache\\train_action_trajectories.csv",
+        "sha256": "8ea78f2f0a36d4ce86b887ba6bf6563272591923e63140d82c14ef3b05bf38d5"
+      },
+      "val_candidate_features": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache\\val_candidate_features.npz",
+        "sha256": "cc878ce02b372d601ddd95b0c57b3be7408aa01710c20de2cea384f73a2bba6d"
+      },
+      "val_state_features": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache\\val_state_features.npz",
+        "sha256": "2c6caa876d5c398c221a1bf5ce974c5a991b13ee52932f132c3cdb1e4b7a1dfc"
+      },
+      "val_action_trajectories": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache\\val_action_trajectories.csv",
+        "sha256": "8979dafc12262025e4243b83ba0310f24663daed72aaaa542cdafbd44b118146"
+      }
+    },
+    "phase9": {
+      "candidate_features": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase9_fresh_external_cache\\external_holdout_candidate_features.npz",
+        "sha256": "9819868192676088f5591604886a039ee7d31c2d1e912787652f7872a6e311ad"
+      },
+      "state_features": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase9_fresh_external_cache\\external_holdout_state_features.npz",
+        "sha256": "9cfee2d9dc94113a194b021c9826a4296e06d01f5fc9ad1770204f6351fcbe17"
+      },
+      "action_trajectories": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase9_fresh_external_cache\\external_holdout_action_trajectories.csv",
+        "sha256": "0f94a0d3453105f9e7fcffd4415a498b1ac0920dae08bdc8526767f4a66be4de"
+      }
+    }
+  },
+  "outputs": {
+    "train_candidate_features": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_10_domain_adaptive_ppo\\results\\domain_adaptive_cache\\train_candidate_features.npz",
+      "sha256": "1cec58502d7ac28321df6d44940d36983513163795d1a1ae33fdcc8ecb8f3c0a"
+    },
+    "train_state_features": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_10_domain_adaptive_ppo\\results\\domain_adaptive_cache\\train_state_features.npz",
+      "sha256": "fac4cdf30685cff4145f19ba018499366d0037d55227bba4e09ee75c0d637de9"
+    },
+    "train_action_trajectories": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_10_domain_adaptive_ppo\\results\\domain_adaptive_cache\\train_action_trajectories.csv",
+      "sha256": "c916d203c4d8aa48b3640d0240bb5fedee488d99d1ab5982add5e7552f63c961"
+    },
+    "val_candidate_features": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_10_domain_adaptive_ppo\\results\\domain_adaptive_cache\\val_candidate_features.npz",
+      "sha256": "b0b719e3a735f0a7b27623a9f78dc863437b3b7790a31cf412c5d691b2eb4d23"
+    },
+    "val_state_features": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_10_domain_adaptive_ppo\\results\\domain_adaptive_cache\\val_state_features.npz",
+      "sha256": "4f39119bcdfdc7f6d610f8461ad8cb099d6a8eb11fb185956343e2ddfd928d89"
+    },
+    "val_action_trajectories": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_10_domain_adaptive_ppo\\results\\domain_adaptive_cache\\val_action_trajectories.csv",
+      "sha256": "f6874c18fdfe76c80fa691d48636ff36e36d29062c704bb88ea6b7bd3e4ba0fe"
+    }
+  }
+}

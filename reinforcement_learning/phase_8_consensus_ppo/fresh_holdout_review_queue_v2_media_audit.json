@@ -1,0 +1,29 @@
+{
+  "contract": "phase8_fresh_review_queue_media_preflight_v1",
+  "inference_run": false,
+  "queue": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_holdout_review_queue_v2.csv",
+    "sha256": "eb2732b53f8e92169f7dc5dd4510798d67515614e2713f952f7a79096e991a9c"
+  },
+  "historical_manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+    "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f"
+  },
+  "opened_external_manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\external_holdout_cropped\\external_manifest.csv",
+    "sha256": "ddd3527e60ace8d85c4b0896e2dde0364be9178b5ffec7168d5e6ca30ce7694d"
+  },
+  "media": {
+    "samples": 900,
+    "rendered": 900,
+    "ordered_rendered_sha256": "592cd0285399fce74ee7a68c56fda1169764b38a15a48293f07ca07d68f98b24",
+    "render_errors": [],
+    "prior_exact_overlaps": [],
+    "queue_exact_duplicates": [],
+    "render_error_count": 0,
+    "prior_exact_overlap_count": 0,
+    "queue_exact_duplicate_count": 0,
+    "passed": true
+  },
+  "passed": true
+}

@@ -1,3 +1,36 @@
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+
 /.agents
-# Large generated image dataset (kept locally only)
 /parseq_rl_deblur_data/color_filtered/
+
+# Trọng số, cache tensor và model binary được giữ local.
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.joblib
+*.pkl
+*.lmdb
+
+# Ảnh external/holdout phải ở local; manifest và audit vẫn có thể được track.
+**/fresh_external_holdout/images/
+**/external_holdout/images/
+**/external_holdout_cropped/images/
+**/runtime_*/images/
+
+# Output Phase 1–5 có thể rất lớn; code và reports không nằm dưới outputs.
+outputs/
+
+# Các result RL deblur đã được Git track trước migration vẫn tiếp tục được giữ.
+
+.DS_Store
+Thumbs.db
+parseq

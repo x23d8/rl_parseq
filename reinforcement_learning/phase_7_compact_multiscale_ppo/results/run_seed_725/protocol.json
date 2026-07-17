@@ -1,0 +1,13 @@
+{
+  "seed": 725,
+  "group_key": "normalized target/label",
+  "development_samples": 2615,
+  "holdout_samples": 655,
+  "development_groups": 1793,
+  "holdout_groups": 447,
+  "group_overlap": 0,
+  "oof_folds": 5,
+  "validation_role": "checkpoint_and_margin_selection; previously audited validation",
+  "holdout_role": "single locked run evaluation; excluded from teacher, BC, PPO and selection",
+  "audited_test_loaded": false
+}

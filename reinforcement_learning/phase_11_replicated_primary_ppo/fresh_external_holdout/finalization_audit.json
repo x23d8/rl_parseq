@@ -1,0 +1,77 @@
+{
+  "contract": "phase11_fresh_locked_confirmatory_manifest_v1",
+  "inference_run": false,
+  "candidate_locked_before_manifest": true,
+  "candidate_lock": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_11_replicated_primary_ppo\\prospective_policy.json",
+    "sha256": "48f3d9dab794534ae0e56065e25e52343227d1453e777972365dbd38a98db1a4"
+  },
+  "label_contract": {
+    "source": "extracted_character",
+    "first_sheet_row_inclusive": 733,
+    "excluded_review_status": [
+      "rejected"
+    ],
+    "manual_acceptance_required": false,
+    "corrected_status_uses_extracted_character": true
+  },
+  "inputs": {
+    "labels_csv": {
+      "path": "D:\\NEO\\image_processing\\dataset_general\\labels.csv",
+      "sha256": "898c16ce7c07b8af5fb540f6dcc9057feb4914bd71b20f27bbf2472330723f47"
+    },
+    "phase8_queue": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_holdout_review_queue_v2.csv",
+      "sha256": "eb2732b53f8e92169f7dc5dd4510798d67515614e2713f952f7a79096e991a9c"
+    },
+    "opened_manifests": [
+      {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+        "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f"
+      },
+      {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\external_holdout_cropped\\external_manifest.csv",
+        "sha256": "ddd3527e60ace8d85c4b0896e2dde0364be9178b5ffec7168d5e6ca30ce7694d"
+      },
+      {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_external_holdout\\external_manifest.csv",
+        "sha256": "cbf3e3f19e287b2b087134afc34da242a45ab3246b41126dd79674dd1d5f123d"
+      },
+      {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\fresh_external_holdout\\external_manifest.csv",
+        "sha256": "d4b2f02c8e7ee3e6bfddb8bf5c1d44eab68a94f19c2aee14c5e3fe5f94385288"
+      }
+    ]
+  },
+  "selection": {
+    "stable_selection_seed": "phase11-replicated-seed728-fresh-external-v1",
+    "target_samples": 1500,
+    "minimum_samples": 500,
+    "candidate_rows_before_media_checks": 1735,
+    "selected_rows": 1500,
+    "unique_labels": 1500,
+    "unique_images": 1500,
+    "historical_or_opened_label_overlap": 0,
+    "phase8_queue_or_phase9_source_overlap": 0,
+    "historical_or_opened_exact_image_overlap": 0,
+    "exclusion_counts": {
+      "duplicate_candidate_label": 489,
+      "empty_extracted_character": 1574,
+      "label_historical_or_opened": 11664,
+      "source_already_in_phase8_queue": 1550
+    }
+  },
+  "power_contract": {
+    "model": "binomial discordance rate and fixed share estimated from opened Phase 8+9 development evidence",
+    "estimated_discordance_rate": 0.01559792027729636,
+    "estimated_fixed_share_among_discordant": 0.8333333333333334,
+    "target_samples": 1500,
+    "estimated_two_sided_mcnemar_power": 0.8949863549847289
+  },
+  "formal_sample_ready": true,
+  "power_target_ready": true,
+  "manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_11_replicated_primary_ppo\\fresh_external_holdout\\external_manifest.csv",
+    "sha256": "292b5cea36981dcc83fe1c4c8fb685b55f5fef74aff44ca4849d92d7b3d6bb8b"
+  }
+}

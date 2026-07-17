@@ -1,0 +1,16 @@
+﻿split,plate_type,source_name,samples
+test,blue,color_filtered,1
+test,ngoaigiao,ngoaigiao,5
+test,other,color_filtered,355
+test,quandoi,quandoi,38
+test,yellow,color_filtered,12
+train,blue,color_filtered,1
+train,ngoaigiao,ngoaigiao,49
+train,other,color_filtered,2840
+train,quandoi,quandoi,279
+train,yellow,color_filtered,101
+val,blue,color_filtered,1
+val,ngoaigiao,ngoaigiao,3
+val,other,color_filtered,355
+val,quandoi,quandoi,26
+val,yellow,color_filtered,12

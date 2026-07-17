@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "one_shot": true,
+  "inference_may_have_started": true,
+  "claim_id": "5be5fc30f01ed0ff899befbde1727062b93885e42d918c75a944c1ec2d1040f9",
+  "evaluation_role": "locked_confirmatory",
+  "split": "external_holdout",
+  "output_directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\results\\external_locked_evaluation",
+  "manifest_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\fresh_external_holdout\\external_manifest.csv",
+  "manifest_sha256": "d4b2f02c8e7ee3e6bfddb8bf5c1d44eab68a94f19c2aee14c5e3fe5f94385288",
+  "candidate_lock_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\prospective_policy.json",
+  "candidate_lock_sha256": "bbe1d41b2c28825b97ca3728cc4810101d91b872b0ea63b8972016ea30adb4d8",
+  "policy_checkpoint_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_ocr_guard_seed_727\\best_candidate_oof_ppo.pt",
+  "policy_checkpoint_sha256": "ee643b85b121a128d3c42d173e8011719693e86f7a60880bc27fbb76bf9eb5df",
+  "parseq_checkpoint_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+  "parseq_checkpoint_sha256": "6e9384c02b39c29c38c5ae3e12a368cd5b1c1aff37b65c8ce1d7d235421c7e24",
+  "cache_artifact_sha256": {
+    "candidate_features": "9819868192676088f5591604886a039ee7d31c2d1e912787652f7872a6e311ad",
+    "state_features": "9cfee2d9dc94113a194b021c9826a4296e06d01f5fc9ad1770204f6351fcbe17",
+    "action_trajectories": "0f94a0d3453105f9e7fcffd4415a498b1ac0920dae08bdc8526767f4a66be4de"
+  },
+  "summary_path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\results\\external_locked_evaluation\\summary.json",
+  "promotion_eligible": false
+}

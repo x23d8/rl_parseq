@@ -1,0 +1,131 @@
+{
+  "source": "validation_only",
+  "samples": 397,
+  "errors": 29,
+  "resolution_groups": [
+    {
+      "resolution_group": "regular",
+      "samples": 109,
+      "errors": 3,
+      "exact_acc": 0.9724770642201835
+    },
+    {
+      "resolution_group": "small",
+      "samples": 209,
+      "errors": 10,
+      "exact_acc": 0.9521531100478469
+    },
+    {
+      "resolution_group": "tiny",
+      "samples": 79,
+      "errors": 16,
+      "exact_acc": 0.7974683544303798
+    }
+  ],
+  "layout_groups": [
+    {
+      "layout_group": "likely_two_line",
+      "samples": 260,
+      "errors": 22,
+      "exact_acc": 0.9153846153846154
+    },
+    {
+      "layout_group": "wide",
+      "samples": 137,
+      "errors": 7,
+      "exact_acc": 0.948905109489051
+    }
+  ],
+  "plate_types": [
+    {
+      "plate_type": "blue",
+      "samples": 1,
+      "errors": 0,
+      "exact_acc": 1.0
+    },
+    {
+      "plate_type": "ngoaigiao",
+      "samples": 3,
+      "errors": 0,
+      "exact_acc": 1.0
+    },
+    {
+      "plate_type": "other",
+      "samples": 355,
+      "errors": 23,
+      "exact_acc": 0.9352112676056338
+    },
+    {
+      "plate_type": "quandoi",
+      "samples": 26,
+      "errors": 4,
+      "exact_acc": 0.8461538461538461
+    },
+    {
+      "plate_type": "yellow",
+      "samples": 12,
+      "errors": 2,
+      "exact_acc": 0.8333333333333334
+    }
+  ],
+  "error_length_delta": {
+    "-3": 1,
+    "-1": 11,
+    "0": 13,
+    "1": 4
+  },
+  "top_equal_length_substitutions": [
+    {
+      "pair": "K>X",
+      "count": 2
+    },
+    {
+      "pair": "G>6",
+      "count": 1
+    },
+    {
+      "pair": "4>2",
+      "count": 1
+    },
+    {
+      "pair": "9>5",
+      "count": 1
+    },
+    {
+      "pair": "4>6",
+      "count": 1
+    },
+    {
+      "pair": "5>6",
+      "count": 1
+    },
+    {
+      "pair": "8>9",
+      "count": 1
+    },
+    {
+      "pair": "8>6",
+      "count": 1
+    },
+    {
+      "pair": "3>7",
+      "count": 1
+    },
+    {
+      "pair": "5>B",
+      "count": 1
+    },
+    {
+      "pair": "H>M",
+      "count": 1
+    },
+    {
+      "pair": "K>M",
+      "count": 1
+    },
+    {
+      "pair": "7>2",
+      "count": 1
+    }
+  ]
+}

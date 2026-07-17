@@ -1,0 +1,66 @@
+{
+  "split": "external_holdout",
+  "samples": 650,
+  "actions": [
+    "baseline",
+    "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+    "full_z0.93_up3_clahe_clip1_tile4",
+    "unwrap_z1.00_up3_train_baseline",
+    "full_z0.85_up2_adaptive_noise_3way",
+    "full_z1.00_up2_clahe_rl_deblur_bilateral",
+    "unwrap_z0.93_up3_adaptive_noise_3way",
+    "full_z1.15_up3_train_baseline",
+    "full_z1.15_up2_train_baseline"
+  ],
+  "candidate_shape": [
+    650,
+    9,
+    781
+  ],
+  "baseline_exact": 0.46153846153846156,
+  "oracle_exact": 0.5123076923076924,
+  "oracle_gain_points": 5.076923076923078,
+  "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+  "checkpoint_sha256": "6e9384c02b39c29c38c5ae3e12a368cd5b1c1aff37b65c8ce1d7d235421c7e24",
+  "artifacts": {
+    "candidate_features": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase9_fresh_external_cache\\external_holdout_candidate_features.npz",
+      "sha256": "9819868192676088f5591604886a039ee7d31c2d1e912787652f7872a6e311ad"
+    },
+    "state_features": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase9_fresh_external_cache\\external_holdout_state_features.npz",
+      "sha256": "9cfee2d9dc94113a194b021c9826a4296e06d01f5fc9ad1770204f6351fcbe17"
+    },
+    "action_trajectories": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase9_fresh_external_cache\\external_holdout_action_trajectories.csv",
+      "sha256": "0f94a0d3453105f9e7fcffd4415a498b1ac0920dae08bdc8526767f4a66be4de"
+    }
+  },
+  "refine_iters": 2,
+  "test_loaded": false,
+  "manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_9_primary_ppo\\fresh_external_holdout\\external_manifest.csv",
+    "sha256": "d4b2f02c8e7ee3e6bfddb8bf5c1d44eab68a94f19c2aee14c5e3fe5f94385288",
+    "source_rows": 650,
+    "selected_rows": 650,
+    "external_contract": true,
+    "group_disjoint": true,
+    "input_contract": "plate_crop"
+  },
+  "group_audit": {
+    "group_key": "normalized target/label",
+    "group_overlap": 0,
+    "historical_manifest": {
+      "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+      "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f",
+      "rows": 4078
+    },
+    "historical_labels_used_for_exclusion_only": true
+  },
+  "power_contract": {
+    "minimum_formal_samples": 500,
+    "actual_samples": 650,
+    "formal_ready": true,
+    "underpowered_diagnostic_override": false
+  }
+}

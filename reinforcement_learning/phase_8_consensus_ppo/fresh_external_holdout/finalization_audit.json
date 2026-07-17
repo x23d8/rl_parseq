@@ -1,0 +1,136 @@
+{
+  "contract": "phase8_fresh_locked_confirmatory_manifest_v1",
+  "inference_run": false,
+  "formal_sample_ready": true,
+  "immutable_queue": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_holdout_review_queue_v2.csv",
+    "sha256": "eb2732b53f8e92169f7dc5dd4510798d67515614e2713f952f7a79096e991a9c"
+  },
+  "media_preflight": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_holdout_review_queue_v2_media_audit.json",
+    "sha256": "0b6678a8ca108e8907961834ee3486f3bfbc434cb456164f0098187cc1366fa7"
+  },
+  "reviewed_queue": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_holdout_review_queue_reviewed_v2.csv",
+    "sha256": "c8454bdea0047191684690557621685453a606f67f78caef670af9e193556e39"
+  },
+  "historical_manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+    "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f"
+  },
+  "opened_external_manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\external_holdout_cropped\\external_manifest.csv",
+    "sha256": "ddd3527e60ace8d85c4b0896e2dde0364be9178b5ffec7168d5e6ca30ce7694d"
+  },
+  "selection": {
+    "reviewed_rows": 900,
+    "accepted": 422,
+    "corrected": 82,
+    "rejected": 84,
+    "selected_rows": 504,
+    "unique_normalized_labels": 504,
+    "historical_or_opened_label_overlap": 0,
+    "historical_or_opened_exact_image_overlap": 0,
+    "review_assessment": {
+      "total": 900,
+      "reviewed": 809,
+      "reviewed_prefix": 809,
+      "accepted": 425,
+      "corrected": 300,
+      "rejected": 84,
+      "blank": 91,
+      "invalid": 0,
+      "invalid_final_label": 0,
+      "reviewed_usable": 725,
+      "eligible_unique": 504,
+      "eligible_prefix": 504,
+      "excluded_label_overlap": 214,
+      "excluded_duplicate_label": 7,
+      "minimum_formal_samples": 500,
+      "remaining_to_minimum": 0,
+      "projected_final_eligible": 561,
+      "projected_prefix_for_minimum": 803,
+      "estimated_additional_reviews": 0,
+      "review_complete": false,
+      "formal_ready": true,
+      "issue_count": 221,
+      "issue_preview": [
+        {
+          "queue_index": 6,
+          "csv_row": 7,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "62A05516"
+        },
+        {
+          "queue_index": 12,
+          "csv_row": 13,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "41501NG08"
+        },
+        {
+          "queue_index": 23,
+          "csv_row": 24,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "51F06609"
+        },
+        {
+          "queue_index": 25,
+          "csv_row": 26,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "82MD102295"
+        },
+        {
+          "queue_index": 27,
+          "csv_row": 28,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "54P28057"
+        },
+        {
+          "queue_index": 31,
+          "csv_row": 32,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "29H38452"
+        },
+        {
+          "queue_index": 33,
+          "csv_row": 34,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "59M147096"
+        },
+        {
+          "queue_index": 36,
+          "csv_row": 37,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "51F59881"
+        },
+        {
+          "queue_index": 38,
+          "csv_row": 39,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "63Y10200"
+        },
+        {
+          "queue_index": 40,
+          "csv_row": 41,
+          "status": "excluded_label_overlap",
+          "decision": "corrected",
+          "label": "93P106312"
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_external_holdout\\external_manifest.csv",
+    "sha256": "cbf3e3f19e287b2b087134afc34da242a45ab3246b41126dd79674dd1d5f123d"
+  },
+  "images_directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\fresh_external_holdout\\images"
+}

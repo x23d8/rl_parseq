@@ -1,0 +1,152 @@
+{
+  "experiment": "phase2_calibrated_resolution_aware_candidate_selector",
+  "data_policy": "fit_and_select_on_validation_only_then_lock_for_test",
+  "phase1_source_dir": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\preprocessing_multiscale_tta_benchmark",
+  "selector": {
+    "model": "pairwise_logistic_regression",
+    "C": 3.0,
+    "switch_margin": 2.0,
+    "feature_count": 57,
+    "folds": 5,
+    "features": [
+      "vote_count",
+      "vote_fraction",
+      "vote_margin",
+      "phase1_support",
+      "phase1_support_fraction",
+      "context_support",
+      "context_support_fraction",
+      "context_support_margin",
+      "support_reliability_mean",
+      "support_reliability_max",
+      "normalized_confidence_max",
+      "normalized_confidence_mean",
+      "normalized_confidence_min",
+      "normalized_confidence_std",
+      "raw_confidence_max",
+      "calibrated_confidence_max",
+      "calibrated_confidence_mean",
+      "fuzzy_consensus",
+      "fuzzy_context_consensus",
+      "baseline_match",
+      "distance_to_baseline",
+      "prediction_length",
+      "letter_count",
+      "digit_count",
+      "type_transitions",
+      "starts_two_digits",
+      "standard_private_pattern",
+      "military_special_pattern",
+      "alphanumeric_only",
+      "length_log_prior",
+      "shape_log_prior",
+      "full_vote_fraction",
+      "unwrap_vote_fraction",
+      "up2_vote_fraction",
+      "up3_vote_fraction",
+      "zoom_out_vote_fraction",
+      "zoom_in_vote_fraction",
+      "preprocess_diversity",
+      "zoom_diversity",
+      "votes_train_baseline",
+      "votes_clahe_clip1_tile4",
+      "votes_clahe_rl_deblur_bilateral",
+      "votes_adaptive_noise_3way",
+      "image_width",
+      "image_height",
+      "aspect_ratio",
+      "log_image_area",
+      "gray_mean",
+      "gray_std",
+      "saturation_mean",
+      "laplacian_log_variance",
+      "is_tiny",
+      "is_small",
+      "is_two_line",
+      "unwrap_two_line_interaction",
+      "upscale_small_interaction",
+      "up3_tiny_interaction"
+    ]
+  },
+  "validation": {
+    "baseline": {
+      "samples": 397,
+      "exact_acc": 0.9269521410579346,
+      "char_acc": 0.9865237366003062,
+      "cer": 0.013476263399693721,
+      "errors": 29,
+      "edit_errors": 44
+    },
+    "phase1_oof": {
+      "samples": 397,
+      "exact_acc": 0.947103274559194,
+      "char_acc": 0.9920367534456356,
+      "cer": 0.007963246554364471,
+      "errors": 21,
+      "edit_errors": 26
+    },
+    "phase2_oof": {
+      "samples": 397,
+      "exact_acc": 0.9521410579345088,
+      "char_acc": 0.9932618683001532,
+      "cer": 0.006738131699846861,
+      "errors": 19,
+      "edit_errors": 22
+    },
+    "phase2_oof_vs_baseline": {
+      "fixed_images": 10,
+      "broken_images": 0
+    },
+    "phase2_oof_vs_phase1": {
+      "fixed_images": 2,
+      "broken_images": 0
+    },
+    "phase2_fullfit_diagnostic": {
+      "samples": 397,
+      "exact_acc": 0.9521410579345088,
+      "char_acc": 0.9932618683001532,
+      "cer": 0.006738131699846861,
+      "errors": 19,
+      "edit_errors": 22
+    }
+  },
+  "test": {
+    "baseline": {
+      "samples": 411,
+      "exact_acc": 0.9197080291970803,
+      "char_acc": 0.98868374032162,
+      "cer": 0.011316259678379988,
+      "errors": 33,
+      "edit_errors": 38
+    },
+    "phase1": {
+      "samples": 411,
+      "exact_acc": 0.9391727493917275,
+      "char_acc": 0.9916617033948779,
+      "cer": 0.008338296605122097,
+      "errors": 25,
+      "edit_errors": 28
+    },
+    "phase2": {
+      "samples": 411,
+      "exact_acc": 0.9416058394160584,
+      "char_acc": 0.9916617033948779,
+      "cer": 0.008338296605122097,
+      "errors": 24,
+      "edit_errors": 28
+    },
+    "phase2_vs_baseline": {
+      "fixed_images": 11,
+      "broken_images": 2
+    },
+    "phase2_vs_phase1": {
+      "fixed_images": 1,
+      "broken_images": 0
+    }
+  },
+  "irrecoverable_21": {
+    "recognized_by_any_candidate": 7,
+    "recognized_by_phase1": 1,
+    "recognized_by_phase2": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "split": "val",
+  "samples": 397,
+  "actions": 10,
+  "candidate_feature_dimension": 783,
+  "shape": [
+    397,
+    10,
+    783
+  ],
+  "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\best_phase3_parseq_anpr.pt",
+  "test_loaded": false,
+  "output": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_6_candidate_oof_ppo\\results\\candidate_cache\\val_candidate_features.npz"
+}

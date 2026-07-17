@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "prospective_locked_for_fresh_external",
+  "algorithm": "dual_seed_ppo_prediction_agreement_consensus",
+  "selection_rule": "baseline unless both PPO policies predict the same non-baseline string; then use policy B action",
+  "policy_checkpoints": [
+    {
+      "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/results/run_ocr_guard_seed_727/best_candidate_oof_ppo.pt",
+      "sha256": "ee643b85b121a128d3c42d173e8011719693e86f7a60880bc27fbb76bf9eb5df"
+    },
+    {
+      "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/results/confirmatory_seed_728/best_candidate_oof_ppo.pt",
+      "sha256": "edd285f6fb18020c859c08f0f680a6c7eb47ce8ab034955f67b9f8546185aea5"
+    }
+  ],
+  "action_registry": {
+    "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/action_space.py",
+    "sha256": "09dd8ea809b3979ecb3e3f31582e334f3adbcc8ff8dc745945f8cd9212377fdc"
+  },
+  "external_contract": {
+    "input_contract": "plate_crop",
+    "group_key": "normalized target/label",
+    "historical_group_overlap": 0,
+    "minimum_samples": 500,
+    "one_shot": true
+  },
+  "selected_after_protocol_repair_diagnostic": true,
+  "requires_fresh_external_confirmation": true
+}

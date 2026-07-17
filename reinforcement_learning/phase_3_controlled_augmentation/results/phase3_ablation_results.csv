@@ -1,0 +1,6 @@
+run,eval_manifest,profile,best_epoch,val_exact_refine1,val_char_refine1,selected_refine,val_exact_selected,val_char_selected,test_exact_selected,test_char_selected,weights_updated,conclusion
+parent_locked,locked,parent,0,0.9269521411,0.9862174579,2,0.9269521411,0.9865237366,0.9197080292,0.9886837403,false,Reference checkpoint
+full_locked,locked,full,0,0.9269521411,0.9862174579,2,0.9269521411,0.9865237366,0.9197080292,0.9886837403,false,No fine-tuned epoch passed the validation guard
+full_current_labels,current,full,0,0.9420654912,0.9883649724,0,0.9445843829,0.9874464176,0.9343065693,0.9901785714,false,Diagnostic only because labels drifted
+resolution_current_labels,current,resolution_only,0,0.9420654912,0.9883649724,0,0.9445843829,0.9874464176,0.9343065693,0.9901785714,false,No fine-tuned epoch passed the validation guard
+restoration_current_labels,current,restoration_only,0,0.9420654912,0.9883649724,0,0.9445843829,0.9874464176,0.9343065693,0.9901785714,false,No fine-tuned epoch passed the validation guard

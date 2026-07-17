@@ -1,0 +1,22 @@
+phase,method,split,samples,exact_acc,char_acc,errors,status
+baseline,PARSeq refine 2,validation,397,0.9269521411,0.9865237366,29,reference
+baseline,PARSeq refine 2,test,411,0.9197080292,0.9886837403,33,reference
+phase_1,65-view multi-scale TTA consensus,validation,397,0.9471032746,0.9920367534,21,improved
+phase_1,65-view multi-scale TTA consensus,test,411,0.9391727494,0.9916617034,25,improved
+phase_2,calibrated candidate selector OOF,validation,397,0.9521410579,0.9932618683,19,improved
+phase_2,locked calibrated candidate selector,test,411,0.9416058394,0.9916617034,24,best_three_phases
+phase_3,controlled augmentation locked checkpoint,validation,397,0.9269521411,0.9865237366,29,no_weight_improvement
+phase_3,controlled augmentation locked checkpoint,test,411,0.9197080292,0.9886837403,33,no_weight_improvement
+phase_6,candidate-aware OOF teacher,validation,397,0.9345088161,0.9865237366,26,reference_oof_teacher
+phase_6,candidate-aware OOF PPO,validation,397,0.9395465995,0.9892802450,24,rl_validation_improved
+phase_6,candidate-aware OOF teacher,new_group_holdout,490,0.9367346939,0.9910269192,31,locked_reference
+phase_6,candidate-aware OOF PPO,new_group_holdout,490,0.9367346939,0.9912761715,31,not_statistically_improved
+phase_7,compact multiscale OOF teacher,group_holdout_seed725,655,0.9282442748,0.9885531995,47,locked_reference
+phase_7,compact multiscale PPO,group_holdout_seed725,655,0.9389312977,0.9908050291,40,rl_improved_mcnemar_borderline
+phase_7,OCR-consensus guarded PPO,group_holdout_seed727,654,0.9541284404,0.9902512186,30,rl_improved_not_promoted
+phase_7,confirmatory OCR-consensus PPO,group_holdout_seed728,1308,0.9533639144,0.9912100243,61,positive_not_significant
+phase_7,plate-crop baseline,external_protocol_repair_diagnostic,154,0.7207792208,0.9433229814,43,diagnostic_reference
+phase_7,OCR-consensus guarded PPO seed727,external_protocol_repair_diagnostic,154,0.7532467532,0.9503105590,38,diagnostic_rl_improved_not_promotable
+phase_7,OCR-consensus guarded PPO seed728,external_protocol_repair_diagnostic,154,0.7597402597,0.9541925466,37,diagnostic_rl_improved_not_promotable
+phase_8,dual-seed prediction-agreement consensus,validation,397,0.9345088161,0.9886676876,26,prospective_zero_harm
+phase_8,dual-seed prediction-agreement consensus,external_protocol_repair_diagnostic,154,0.7597402597,0.9534161491,37,all_gates_passed_not_promotable

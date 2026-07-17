@@ -1,0 +1,125 @@
+{
+  "algorithm": "dual_seed_ppo_prediction_agreement_consensus",
+  "status": "prospective_candidate_not_promoted",
+  "evaluation_role": "development_validation",
+  "split": "val",
+  "samples": 397,
+  "cache": {
+    "directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\cache",
+    "summary": {
+      "split": "val",
+      "samples": 397,
+      "actions": [
+        "baseline",
+        "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+        "full_z0.93_up3_clahe_clip1_tile4",
+        "unwrap_z1.00_up3_train_baseline",
+        "full_z0.85_up2_adaptive_noise_3way",
+        "full_z1.00_up2_clahe_rl_deblur_bilateral",
+        "unwrap_z0.93_up3_adaptive_noise_3way",
+        "full_z1.15_up3_train_baseline",
+        "full_z1.15_up2_train_baseline"
+      ],
+      "candidate_shape": [
+        397,
+        9,
+        781
+      ],
+      "baseline_exact": 0.9269521410579346,
+      "oracle_exact": 0.9773299748110831,
+      "oracle_gain_points": 5.037783375314852,
+      "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+      "test_loaded": false
+    }
+  },
+  "checkpoints": [
+    "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_ocr_guard_seed_727\\best_candidate_oof_ppo.pt",
+    "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\confirmatory_seed_728\\best_candidate_oof_ppo.pt"
+  ],
+  "candidate_lock": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\prospective_policy.json",
+    "sha256": "3c14d385ba37c0fdd35e1f068820e0d48dcad10a6d756a87c6d7298af71dd17f",
+    "status": "prospective_locked_for_fresh_external"
+  },
+  "selection_rule": "baseline unless both PPO policies predict the same non-baseline string; then use policy B action",
+  "policy_a": {
+    "samples": 397,
+    "exact_acc": 0.9370277078085643,
+    "char_acc": 0.9889739663093415,
+    "fixed": 5,
+    "broken": 1,
+    "net_fixes": 4,
+    "mean_cost": 0.00036775818639798487,
+    "stop_rate": 0.9420654911838791,
+    "revise_rate": 0.020151133501259445
+  },
+  "policy_b": {
+    "samples": 397,
+    "exact_acc": 0.9395465994962217,
+    "char_acc": 0.9883614088820827,
+    "fixed": 5,
+    "broken": 0,
+    "net_fixes": 5,
+    "mean_cost": 0.0007204030226700252,
+    "stop_rate": 0.9193954659949622,
+    "revise_rate": 0.0025188916876574307
+  },
+  "baseline": {
+    "samples": 397,
+    "exact_acc": 0.9269521410579346,
+    "char_acc": 0.9865237366003062,
+    "fixed": 0,
+    "broken": 0,
+    "net_fixes": 0,
+    "mean_cost": 0.0,
+    "stop_rate": 1.0,
+    "revise_rate": 0.0
+  },
+  "consensus": {
+    "samples": 397,
+    "exact_acc": 0.9345088161209067,
+    "char_acc": 0.9886676875957121,
+    "fixed": 3,
+    "broken": 0,
+    "net_fixes": 3,
+    "mean_cost": 0.00020151133501259444,
+    "stop_rate": 0.9773299748110831,
+    "revise_rate": 0.0
+  },
+  "consensus_change_rate": 0.022670025188916875,
+  "statistics_vs_baseline": {
+    "paired_bootstrap": {
+      "delta_exact": 0.007556675062972292,
+      "delta_exact_ci95": [
+        0.0,
+        0.017632241813602016
+      ],
+      "delta_character": 0.0021340610131542126,
+      "delta_character_ci95": [
+        0.000594738315141338,
+        0.004058214385670305
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 3,
+      "broken": 0,
+      "discordant": 3,
+      "p_value_exact": 0.25
+    }
+  },
+  "formal_improvement_gate_vs_baseline": {
+    "passed": false,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": false,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": false
+    }
+  },
+  "promotion_eligible": false,
+  "external_holdout_evaluated_once": false,
+  "audited_legacy_test_loaded": false,
+  "test_used": false
+}

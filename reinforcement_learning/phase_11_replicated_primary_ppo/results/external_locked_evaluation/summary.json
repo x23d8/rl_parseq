@@ -1,0 +1,247 @@
+{
+  "algorithm": "replicated_primary_candidate_oof_ppo_seed728",
+  "status": "external_holdout_failed_gate",
+  "evaluation_role": "locked_confirmatory",
+  "split": "external_holdout",
+  "samples": 1500,
+  "selection_rule": "run the existing seed-728 PPO policy with its locked teacher, first-action, revise, and disagreement guards",
+  "candidate_lock": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_11_replicated_primary_ppo\\prospective_policy.json",
+    "sha256": "48f3d9dab794534ae0e56065e25e52343227d1453e777972365dbd38a98db1a4",
+    "status": "prospective_locked_requires_new_external"
+  },
+  "policy_checkpoint": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\confirmatory_seed_728\\best_candidate_oof_ppo.pt",
+    "sha256": "edd285f6fb18020c859c08f0f680a6c7eb47ce8ab034955f67b9f8546185aea5"
+  },
+  "cache": {
+    "directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase11_fresh_external_cache",
+    "summary": {
+      "split": "external_holdout",
+      "samples": 1500,
+      "actions": [
+        "baseline",
+        "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+        "full_z0.93_up3_clahe_clip1_tile4",
+        "unwrap_z1.00_up3_train_baseline",
+        "full_z0.85_up2_adaptive_noise_3way",
+        "full_z1.00_up2_clahe_rl_deblur_bilateral",
+        "unwrap_z0.93_up3_adaptive_noise_3way",
+        "full_z1.15_up3_train_baseline",
+        "full_z1.15_up2_train_baseline"
+      ],
+      "candidate_shape": [
+        1500,
+        9,
+        781
+      ],
+      "baseline_exact": 0.472,
+      "oracle_exact": 0.514,
+      "oracle_gain_points": 4.200000000000004,
+      "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+      "checkpoint_sha256": "6e9384c02b39c29c38c5ae3e12a368cd5b1c1aff37b65c8ce1d7d235421c7e24",
+      "artifacts": {
+        "candidate_features": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase11_fresh_external_cache\\external_holdout_candidate_features.npz",
+          "sha256": "c6cafe24ed57c830e252eaf42940d1ebe10be671d9da00452a3bd12aa4dfd3f9"
+        },
+        "state_features": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase11_fresh_external_cache\\external_holdout_state_features.npz",
+          "sha256": "975dec915dafaed574f0329b637a433a31fd84e0686fd7d1f5a2de6631306941"
+        },
+        "action_trajectories": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\phase11_fresh_external_cache\\external_holdout_action_trajectories.csv",
+          "sha256": "dab0a706dd2f46a54a8f92c4ec683dae78b8f8061be8f93305b693624aee0855"
+        }
+      },
+      "refine_iters": 2,
+      "test_loaded": false,
+      "manifest": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_11_replicated_primary_ppo\\fresh_external_holdout\\external_manifest.csv",
+        "sha256": "292b5cea36981dcc83fe1c4c8fb685b55f5fef74aff44ca4849d92d7b3d6bb8b",
+        "source_rows": 1500,
+        "selected_rows": 1500,
+        "external_contract": true,
+        "group_disjoint": true,
+        "input_contract": "plate_crop"
+      },
+      "group_audit": {
+        "group_key": "normalized target/label",
+        "group_overlap": 0,
+        "historical_manifest": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+          "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f",
+          "rows": 4078
+        },
+        "historical_labels_used_for_exclusion_only": true
+      },
+      "power_contract": {
+        "minimum_formal_samples": 500,
+        "actual_samples": 1500,
+        "formal_ready": true,
+        "underpowered_diagnostic_override": false
+      }
+    }
+  },
+  "baseline": {
+    "samples": 1500,
+    "exact_acc": 0.472,
+    "char_acc": 0.8280126080982785,
+    "fixed": 0,
+    "broken": 0,
+    "net_fixes": 0,
+    "mean_cost": 0.0,
+    "stop_rate": 1.0,
+    "revise_rate": 0.0
+  },
+  "policy": {
+    "samples": 1500,
+    "exact_acc": 0.4786666666666667,
+    "char_acc": 0.8355289743796978,
+    "fixed": 16,
+    "broken": 6,
+    "net_fixes": 10,
+    "mean_cost": 0.0018553333333333332,
+    "stop_rate": 0.782,
+    "revise_rate": 0.007333333333333333
+  },
+  "statistics_vs_baseline": {
+    "paired_bootstrap": {
+      "delta_exact": 0.006666666666666667,
+      "delta_exact_ci95": [
+        0.0006666666666666666,
+        0.012666666666666666
+      ],
+      "delta_character": 0.007318253968253968,
+      "delta_character_ci95": [
+        0.003832222222222221,
+        0.010844854497354495
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 16,
+      "broken": 6,
+      "discordant": 22,
+      "p_value_exact": 0.052478790283203125
+    }
+  },
+  "formal_improvement_gate_vs_baseline": {
+    "passed": false,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": true,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": false
+    }
+  },
+  "descriptive_slices": {
+    "role": "descriptive_only_not_a_promotion_gate",
+    "source": {
+      "archive_plate_crops_from_coords": {
+        "samples": 605,
+        "baseline_exact": 0.2115702479338843,
+        "policy_exact": 0.21652892561983472,
+        "policy_character_accuracy": 0.7380718633418417,
+        "fixed": 4,
+        "broken": 1,
+        "net_fixes": 3
+      },
+      "cropped": {
+        "samples": 437,
+        "baseline_exact": 0.9244851258581236,
+        "policy_exact": 0.9427917620137299,
+        "policy_character_accuracy": 0.9924749163879598,
+        "fixed": 10,
+        "broken": 2,
+        "net_fixes": 8
+      },
+      "yolo_plate_dataset": {
+        "samples": 384,
+        "baseline_exact": 0.3854166666666667,
+        "policy_exact": 0.3854166666666667,
+        "policy_character_accuracy": 0.845628859278518,
+        "fixed": 2,
+        "broken": 2,
+        "net_fixes": 0
+      },
+      "yolo_plate_ocr_dataset": {
+        "samples": 74,
+        "baseline_exact": 0.3783783783783784,
+        "policy_exact": 0.36486486486486486,
+        "policy_character_accuracy": 0.6764227642276424,
+        "fixed": 0,
+        "broken": 1,
+        "net_fixes": -1
+      }
+    },
+    "input_transform": {
+      "crop_source_bounding_box": {
+        "samples": 384,
+        "baseline_exact": 0.3854166666666667,
+        "policy_exact": 0.3854166666666667,
+        "policy_character_accuracy": 0.845628859278518,
+        "fixed": 2,
+        "broken": 2,
+        "net_fixes": 0
+      },
+      "existing_plate_crop": {
+        "samples": 1116,
+        "baseline_exact": 0.5017921146953405,
+        "policy_exact": 0.510752688172043,
+        "policy_character_accuracy": 0.8321858864027538,
+        "fixed": 14,
+        "broken": 4,
+        "net_fixes": 10
+      }
+    },
+    "crop_size_bucket": {
+      "min_side_32_63": {
+        "samples": 449,
+        "baseline_exact": 0.5545657015590201,
+        "policy_exact": 0.5634743875278396,
+        "policy_character_accuracy": 0.8943285179240236,
+        "fixed": 5,
+        "broken": 1,
+        "net_fixes": 4
+      },
+      "min_side_64_127": {
+        "samples": 369,
+        "baseline_exact": 0.45799457994579945,
+        "policy_exact": 0.4634146341463415,
+        "policy_character_accuracy": 0.8816339659054359,
+        "fixed": 3,
+        "broken": 1,
+        "net_fixes": 2
+      },
+      "min_side_ge128": {
+        "samples": 149,
+        "baseline_exact": 0.42953020134228187,
+        "policy_exact": 0.4228187919463087,
+        "policy_character_accuracy": 0.7147487844408428,
+        "fixed": 1,
+        "broken": 2,
+        "net_fixes": -1
+      },
+      "min_side_lt32": {
+        "samples": 533,
+        "baseline_exact": 0.42401500938086306,
+        "policy_exact": 0.4333958724202627,
+        "policy_character_accuracy": 0.7856477166821995,
+        "fixed": 7,
+        "broken": 2,
+        "net_fixes": 5
+      }
+    }
+  },
+  "promotion_eligible": false,
+  "external_holdout_evaluated_once": true,
+  "audited_legacy_test_loaded": false,
+  "test_used": false,
+  "confirmatory_receipt": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_11_replicated_primary_ppo\\results\\fresh_locked_confirmatory_receipt.json",
+    "claim_id": "c6b7a8bed8fe1a7ca09990f26e44ce2fb9975d2c37b880bdcc431fa21d9883bf",
+    "one_shot": true
+  }
+}

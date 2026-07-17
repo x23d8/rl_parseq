@@ -1,0 +1,145 @@
+{
+  "algorithm": "dual_seed_ppo_prediction_agreement_consensus",
+  "status": "protocol_repair_diagnostic_not_promotable",
+  "evaluation_role": "protocol_repair_diagnostic",
+  "split": "external_holdout",
+  "samples": 154,
+  "cache": {
+    "directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\external_cache_plate_crop_repair",
+    "summary": {
+      "split": "external_holdout",
+      "samples": 154,
+      "actions": [
+        "baseline",
+        "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+        "full_z0.93_up3_clahe_clip1_tile4",
+        "unwrap_z1.00_up3_train_baseline",
+        "full_z0.85_up2_adaptive_noise_3way",
+        "full_z1.00_up2_clahe_rl_deblur_bilateral",
+        "unwrap_z0.93_up3_adaptive_noise_3way",
+        "full_z1.15_up3_train_baseline",
+        "full_z1.15_up2_train_baseline"
+      ],
+      "candidate_shape": [
+        154,
+        9,
+        781
+      ],
+      "baseline_exact": 0.7207792207792207,
+      "oracle_exact": 0.8116883116883117,
+      "oracle_gain_points": 9.090909090909093,
+      "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+      "refine_iters": 2,
+      "test_loaded": false,
+      "manifest": {
+        "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\external_holdout_cropped\\external_manifest_group_disjoint.csv",
+        "sha256": "e3abf419198a88f0679ad88449d0c334d4dc85b5b26e3f4e2114e5d319dfe078",
+        "source_rows": 154,
+        "selected_rows": 154,
+        "external_contract": true,
+        "group_disjoint": true,
+        "input_contract": "plate_crop"
+      },
+      "group_audit": {
+        "group_key": "normalized target/label",
+        "group_overlap": 0,
+        "historical_manifest": {
+          "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\dataset_manifest.csv",
+          "sha256": "ffe80bbee6cd1e05629b5ca1dc6c4f437ea80a87d04aee5d0d87254ea5afba6f",
+          "rows": 4078
+        },
+        "historical_labels_used_for_exclusion_only": true
+      }
+    }
+  },
+  "checkpoints": [
+    "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_ocr_guard_seed_727\\best_candidate_oof_ppo.pt",
+    "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\confirmatory_seed_728\\best_candidate_oof_ppo.pt"
+  ],
+  "candidate_lock": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_8_consensus_ppo\\prospective_policy.json",
+    "sha256": "3c14d385ba37c0fdd35e1f068820e0d48dcad10a6d756a87c6d7298af71dd17f",
+    "status": "prospective_locked_for_fresh_external"
+  },
+  "selection_rule": "baseline unless both PPO policies predict the same non-baseline string; then use policy B action",
+  "policy_a": {
+    "samples": 154,
+    "exact_acc": 0.7532467532467533,
+    "char_acc": 0.9503105590062112,
+    "fixed": 6,
+    "broken": 1,
+    "net_fixes": 5,
+    "mean_cost": 0.0009480519480519481,
+    "stop_rate": 0.8441558441558441,
+    "revise_rate": 0.01948051948051948
+  },
+  "policy_b": {
+    "samples": 154,
+    "exact_acc": 0.7597402597402597,
+    "char_acc": 0.9541925465838509,
+    "fixed": 7,
+    "broken": 1,
+    "net_fixes": 6,
+    "mean_cost": 0.001590909090909091,
+    "stop_rate": 0.8116883116883117,
+    "revise_rate": 0.012987012987012988
+  },
+  "baseline": {
+    "samples": 154,
+    "exact_acc": 0.7207792207792207,
+    "char_acc": 0.9433229813664596,
+    "fixed": 0,
+    "broken": 0,
+    "net_fixes": 0,
+    "mean_cost": 0.0,
+    "stop_rate": 1.0,
+    "revise_rate": 0.0
+  },
+  "consensus": {
+    "samples": 154,
+    "exact_acc": 0.7597402597402597,
+    "char_acc": 0.953416149068323,
+    "fixed": 6,
+    "broken": 0,
+    "net_fixes": 6,
+    "mean_cost": 0.0007207792207792208,
+    "stop_rate": 0.9155844155844156,
+    "revise_rate": 0.0
+  },
+  "consensus_change_rate": 0.08441558441558442,
+  "statistics_vs_baseline": {
+    "paired_bootstrap": {
+      "delta_exact": 0.03896103896103896,
+      "delta_exact_ci95": [
+        0.012987012987012988,
+        0.07142857142857142
+      ],
+      "delta_character": 0.010139661925376211,
+      "delta_character_ci95": [
+        0.0015460729746444028,
+        0.020614628427128426
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 6,
+      "broken": 0,
+      "discordant": 6,
+      "p_value_exact": 0.03125
+    }
+  },
+  "formal_improvement_gate_vs_baseline": {
+    "passed": true,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": true,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": true
+    }
+  },
+  "promotion_eligible": false,
+  "external_holdout_evaluated_once": true,
+  "audited_legacy_test_loaded": false,
+  "test_used": false
+}

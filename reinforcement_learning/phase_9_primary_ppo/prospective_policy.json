@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "prospective_locked_requires_new_external",
+  "algorithm": "single_primary_candidate_oof_ppo",
+  "selection_rule": "run the existing seed-727 PPO policy with its locked teacher, first-action, revise, and disagreement guards",
+  "policy_checkpoint": {
+    "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/results/run_ocr_guard_seed_727/best_candidate_oof_ppo.pt",
+    "sha256": "ee643b85b121a128d3c42d173e8011719693e86f7a60880bc27fbb76bf9eb5df"
+  },
+  "action_registry": {
+    "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/action_space.py",
+    "sha256": "09dd8ea809b3979ecb3e3f31582e334f3adbcc8ff8dc745945f8cd9212377fdc"
+  },
+  "selection_provenance": {
+    "selected_after_opening_phase8_holdout": true,
+    "phase8_result_is_development_evidence_only": true,
+    "phase8_holdout_must_not_be_reused_for_confirmation": true,
+    "phase8_policy_a_exact_delta": 0.021825396825396824,
+    "phase8_policy_a_exact_ci95": [
+      0.005952380952380952,
+      0.037698412698412696
+    ],
+    "phase8_policy_a_character_delta": 0.00514534517510708,
+    "phase8_policy_a_mcnemar_p": 0.012725830078125
+  },
+  "external_contract": {
+    "input_contract": "plate_crop",
+    "label_source": "labels.csv:extracted_character",
+    "first_sheet_row_inclusive": 733,
+    "exclude_review_status": [
+      "rejected"
+    ],
+    "manual_acceptance_required": false,
+    "group_key": "normalized target/label",
+    "historical_and_opened_group_overlap": 0,
+    "phase8_queue_source_overlap": 0,
+    "minimum_samples": 500,
+    "target_samples": 650,
+    "one_shot": true
+  }
+}
+

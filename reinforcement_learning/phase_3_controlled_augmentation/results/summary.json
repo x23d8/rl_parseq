@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "parent_checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+  "best_checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\best_phase3_parseq_anpr.pt",
+  "best_epoch": 0,
+  "best_refine_iters_selected_on_validation": 2,
+  "parent_validation_metrics": {
+    "split": "val_parent_checkpoint",
+    "samples": 397,
+    "exact_acc": 0.9269521410579346,
+    "cer": 0.013782542113323124,
+    "char_acc": 0.9862174578866769,
+    "refine_iters": 1
+  },
+  "phase3_validation_metrics": {
+    "split": "val_refine_2",
+    "samples": 397,
+    "exact_acc": 0.9269521410579346,
+    "cer": 0.013476263399693721,
+    "char_acc": 0.9865237366003062,
+    "refine_iters": 2
+  },
+  "phase3_test_metrics_locked": {
+    "split": "test_locked",
+    "samples": 411,
+    "exact_acc": 0.9197080291970803,
+    "cer": 0.011316259678379988,
+    "char_acc": 0.98868374032162,
+    "refine_iters": 2
+  },
+  "dataset_sizes": {
+    "train": 3270,
+    "val": 397,
+    "test": 411
+  },
+  "policy_profile": "full"
+}

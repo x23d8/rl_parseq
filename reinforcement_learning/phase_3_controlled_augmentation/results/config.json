@@ -1,0 +1,79 @@
+{
+  "training": {
+    "checkpoint": "outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+    "output_dir": "outputs\\phase3_controlled_aug_full_frozen_eval",
+    "data_root": "D:\\NEO\\LPR\\parseq_official_pipeline\\dataset",
+    "val_manifest": "",
+    "test_manifest": "",
+    "policy_profile": "full",
+    "epochs": 12,
+    "batch_size": 16,
+    "num_workers": 0,
+    "learning_rate": 3e-06,
+    "weight_decay": 0.0001,
+    "grad_clip": 10.0,
+    "refine_iters": 1,
+    "max_label_length": 12,
+    "seed": 20260715,
+    "amp": true,
+    "balance_alpha": 0.5,
+    "max_sample_weight": 8.0,
+    "freeze_encoder_epochs": 1,
+    "early_stopping_patience": 4,
+    "max_train_samples": null
+  },
+  "augmentation": {
+    "profile": "full",
+    "near_identity_probability": 0.2,
+    "zoom_probability": 0.42,
+    "zoom_min": 0.84,
+    "zoom_max": 1.16,
+    "perspective_probability": 0.12,
+    "affine_probability": 0.18,
+    "unwrap_probability": 0.38,
+    "resolution_probability": 0.42,
+    "blur_probability": 0.2,
+    "jpeg_probability": 0.2,
+    "noise_probability": 0.16,
+    "photometric_probability": 0.3,
+    "max_degradations": 2,
+    "min_downsample_scale": 0.38,
+    "max_downsample_scale": 0.72,
+    "jpeg_quality_min": 38,
+    "jpeg_quality_max": 82,
+    "preprocess_weights": [
+      [
+        "train_baseline",
+        0.34
+      ],
+      [
+        "clahe_clip1_tile4",
+        0.2
+      ],
+      [
+        "clahe_rl_deblur_bilateral",
+        0.16
+      ],
+      [
+        "adaptive_noise_3way",
+        0.2
+      ],
+      [
+        "raw_rgb",
+        0.1
+      ]
+    ]
+  },
+  "class_weights": {
+    "other": 1.0,
+    "quandoi": 3.1904876538758224,
+    "yellow": 5.302717405367565,
+    "ngoaigiao": 7.61309291112813,
+    "blue": 8.0
+  },
+  "frozen_eval_manifests": {
+    "val": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\eval_val_predictions_best_refine.csv",
+    "test": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\eval_test_predictions_best_refine.csv"
+  },
+  "device": "cuda"
+}

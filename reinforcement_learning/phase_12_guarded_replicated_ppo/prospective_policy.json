@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "prospective_locked_waiting_for_fresh_data",
+  "algorithm": "guarded_replicated_candidate_oof_ppo_seed728",
+  "selection_rule": "run seed-728 PPO, but commit a non-baseline action only for input_transform=existing_plate_crop with min(crop_width,crop_height)<128; otherwise use baseline",
+  "policy_checkpoint": {
+    "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/results/confirmatory_seed_728/best_candidate_oof_ppo.pt",
+    "sha256": "edd285f6fb18020c859c08f0f680a6c7eb47ce8ab034955f67b9f8546185aea5"
+  },
+  "action_registry": {
+    "path": "reinforcement_learning/phase_7_compact_multiscale_ppo/action_space.py",
+    "sha256": "09dd8ea809b3979ecb3e3f31582e334f3adbcc8ff8dc745945f8cd9212377fdc"
+  },
+  "guard": {
+    "required_input_transform": "existing_plate_crop",
+    "minimum_side_exclusive_upper_bound": 128,
+    "fallback_action": "baseline",
+    "label_free": true
+  },
+  "development_evidence": {
+    "all_datasets_are_opened_and_not_confirmatory": true,
+    "phase8": {"samples": 504, "fixed": 7, "broken": 1},
+    "phase9": {"samples": 650, "fixed": 6, "broken": 1},
+    "phase11": {"samples": 1500, "fixed": 14, "broken": 2},
+    "combined": {
+      "samples": 2654,
+      "fixed": 27,
+      "broken": 4,
+      "exact_delta": 0.008666164280331574,
+      "exact_ci95": [0.00452147701582517, 0.01281085154483798],
+      "character_delta": 0.00484593485723855,
+      "character_ci95": [0.002618782221504527, 0.007127606129113288],
+      "mcnemar_p": 0.0000339532271027565
+    }
+  },
+  "power_contract": {
+    "estimated_discordance_rate": 0.011680482290881687,
+    "estimated_fixed_share_among_discordant": 0.8709677419354839,
+    "target_samples": 1500,
+    "estimated_two_sided_mcnemar_power": 0.876784870346554,
+    "minimum_formal_samples": 500
+  },
+  "external_contract": {
+    "input_contract": "plate_crop",
+    "required_metadata": ["input_transform", "crop_width", "crop_height"],
+    "label_source": "labels.csv:extracted_character",
+    "first_sheet_row_inclusive": 733,
+    "sheet_row_direction": "toward_larger_row_numbers",
+    "exclude_review_status": ["rejected"],
+    "manual_acceptance_required": false,
+    "historical_and_all_opened_group_overlap": 0,
+    "all_opened_source_and_exact_image_overlap": 0,
+    "one_shot": true
+  }
+}

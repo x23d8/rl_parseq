@@ -1,0 +1,85 @@
+{
+  "algorithm": "candidate_set_ppo_with_oof_teacher_residual",
+  "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_seed_725\\best_candidate_oof_ppo.pt",
+  "samples": 154,
+  "external_cache_manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\external_holdout\\external_manifest_group_disjoint.csv",
+    "sha256": "304a1fbf2fcc89602cec5eebfadc0d198e82f8125f630cff95f61502d6938eb7",
+    "source_rows": 154,
+    "selected_rows": 154,
+    "external_contract": true,
+    "group_disjoint": true
+  },
+  "external_cache": {
+    "directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\external_cache",
+    "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+    "refine_iters": 2,
+    "actions": [
+      "baseline",
+      "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+      "full_z0.93_up3_clahe_clip1_tile4",
+      "unwrap_z1.00_up3_train_baseline",
+      "full_z0.85_up2_adaptive_noise_3way",
+      "full_z1.00_up2_clahe_rl_deblur_bilateral",
+      "unwrap_z0.93_up3_adaptive_noise_3way",
+      "full_z1.15_up3_train_baseline",
+      "full_z1.15_up2_train_baseline"
+    ]
+  },
+  "policy": {
+    "samples": 154,
+    "exact_acc": 0.551948051948052,
+    "char_acc": 0.6661490683229814,
+    "fixed": 2,
+    "broken": 1,
+    "net_fixes": 1,
+    "mean_cost": 0.005071428571428571,
+    "stop_rate": 0.3961038961038961,
+    "revise_rate": 0.006493506493506494
+  },
+  "teacher": {
+    "samples": 154,
+    "exact_acc": 0.5454545454545454,
+    "char_acc": 0.6638198757763976,
+    "fixed": 2,
+    "broken": 2,
+    "net_fixes": 0,
+    "mean_cost": 0.004220779220779221,
+    "stop_rate": 0.5,
+    "revise_rate": 0.0
+  },
+  "statistics_vs_teacher": {
+    "paired_bootstrap": {
+      "delta_exact": 0.006493506493506494,
+      "delta_exact_ci95": [
+        -0.012987012987012988,
+        0.032467532467532464
+      ],
+      "delta_character": 0.0023448773448773446,
+      "delta_character_ci95": [
+        -0.002164502164502165,
+        0.008838383838383836
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 2,
+      "broken": 1,
+      "discordant": 3,
+      "p_value_exact": 1.0
+    }
+  },
+  "formal_improvement_gate": {
+    "passed": false,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": false,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": false
+    }
+  },
+  "promotion_status": "external_holdout_failed_gate",
+  "external_holdout_evaluated_once": true,
+  "audited_legacy_test_loaded": false
+}

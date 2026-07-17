@@ -1,0 +1,87 @@
+{
+  "algorithm": "candidate_set_ppo_with_oof_teacher_residual",
+  "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_seed_725\\best_candidate_oof_ppo.pt",
+  "samples": 154,
+  "external_cache_manifest": {
+    "path": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\external_holdout_cropped\\external_manifest_group_disjoint.csv",
+    "sha256": "e3abf419198a88f0679ad88449d0c334d4dc85b5b26e3f4e2114e5d319dfe078",
+    "source_rows": 154,
+    "selected_rows": 154,
+    "external_contract": true,
+    "group_disjoint": true,
+    "input_contract": "plate_crop"
+  },
+  "external_cache": {
+    "directory": "D:\\NEO\\LPR\\parseq_official_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\external_cache_plate_crop_repair",
+    "checkpoint": "D:\\NEO\\LPR\\parseq_official_pipeline\\outputs\\testing\\refinement_finetune_20260710_142307\\best_official_parseq_anpr.pt",
+    "refine_iters": 2,
+    "actions": [
+      "baseline",
+      "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+      "full_z0.93_up3_clahe_clip1_tile4",
+      "unwrap_z1.00_up3_train_baseline",
+      "full_z0.85_up2_adaptive_noise_3way",
+      "full_z1.00_up2_clahe_rl_deblur_bilateral",
+      "unwrap_z0.93_up3_adaptive_noise_3way",
+      "full_z1.15_up3_train_baseline",
+      "full_z1.15_up2_train_baseline"
+    ]
+  },
+  "policy": {
+    "samples": 154,
+    "exact_acc": 0.7337662337662337,
+    "char_acc": 0.9495341614906833,
+    "fixed": 5,
+    "broken": 3,
+    "net_fixes": 2,
+    "mean_cost": 0.00325974025974026,
+    "stop_rate": 0.5909090909090909,
+    "revise_rate": 0.01948051948051948
+  },
+  "teacher": {
+    "samples": 154,
+    "exact_acc": 0.7142857142857143,
+    "char_acc": 0.9409937888198758,
+    "fixed": 2,
+    "broken": 3,
+    "net_fixes": -1,
+    "mean_cost": 0.0017272727272727275,
+    "stop_rate": 0.7662337662337663,
+    "revise_rate": 0.0
+  },
+  "statistics_vs_teacher": {
+    "paired_bootstrap": {
+      "delta_exact": 0.01948051948051948,
+      "delta_exact_ci95": [
+        -0.012987012987012988,
+        0.05194805194805195
+      ],
+      "delta_character": 0.008658008658008658,
+      "delta_character_ci95": [
+        9.018759018758986e-05,
+        0.01966089466089466
+      ],
+      "bootstrap_samples": 10000
+    },
+    "mcnemar": {
+      "fixed": 5,
+      "broken": 2,
+      "discordant": 7,
+      "p_value_exact": 0.453125
+    }
+  },
+  "formal_improvement_gate": {
+    "passed": false,
+    "checks": {
+      "delta_exact_positive": true,
+      "exact_ci_excludes_zero": false,
+      "character_not_lower": true,
+      "net_fixes_positive": true,
+      "mcnemar_significant": false
+    }
+  },
+  "promotion_status": "protocol_repair_diagnostic_not_promotable",
+  "evaluation_role": "protocol_repair_diagnostic",
+  "external_holdout_evaluated_once": true,
+  "audited_legacy_test_loaded": false
+}
