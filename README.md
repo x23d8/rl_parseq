@@ -37,7 +37,7 @@ Kiểm tra trạng thái mới nhất mà không chạy OCR/PPO:
 python reinforcement_learning\run_phase.py phase12-status
 ```
 
-Lệnh trên cần dataset external mặc định tại `D:\NEO\image_processing\dataset_general`. Nếu dữ liệu nằm nơi khác, xem `phase12-status --help` và truyền `--source-root`, `--labels-csv`.
+Lệnh trên cần dataset external mặc định tại `D:\image_processing\image_processing\dataset_general`. Nếu dữ liệu nằm nơi khác, xem `phase12-status --help` và truyền `--source-root`, `--labels-csv`.
 
 ## 3. Cấu trúc repository
 
@@ -316,7 +316,7 @@ Chỉ chạy `prepare -> phase7-cache --preflight -> phase7-cache -> evaluate ->
 
 ## 10. Lỗi thường gặp
 
-### `FileNotFoundError` với đường dẫn `D:\NEO\...`
+### `FileNotFoundError` với đường dẫn `D:\image_processing\...`
 
 Manifest/config lịch sử chứa absolute path của máy gốc. Dùng dữ liệu đúng vị trí cũ, tạo junction tương thích, hoặc tạo manifest mới với đường dẫn đã rebase.
 
