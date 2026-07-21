@@ -37,7 +37,7 @@ Kiểm tra trạng thái mới nhất mà không chạy OCR/PPO:
 python reinforcement_learning\run_phase.py phase12-status
 ```
 
-Lệnh trên cần dataset external mặc định tại `D:\NEO\image_processing\dataset_general`. Nếu dữ liệu nằm nơi khác, xem `phase12-status --help` và truyền `--source-root`, `--labels-csv`.
+Lệnh trên cần dataset external mặc định tại `D:\image_processing\image_processing\dataset_general`. Nếu dữ liệu nằm nơi khác, xem `phase12-status --help` và truyền `--source-root`, `--labels-csv`.
 
 ## 3. Cấu trúc repository
 
@@ -159,7 +159,7 @@ Các quy tắc quan trọng:
 - Input formal của Phase 7–12 phải là `plate_crop`, không phải ảnh toàn cảnh.
 - Nhóm được tính bằng label đã normalize; train/development/holdout formal không được trùng nhóm theo contract của phase.
 - Runtime label-free không đọc label.
-- Nhiều manifest lịch sử chứa absolute path cũ như `D:\NEO\LPR\...`. Trên máy khác phải sửa `image_path` hoặc tạo mapping/junction tương thích. Không sửa manifest/receipt one-shot đã dùng để đưa ra kết luận lịch sử; hãy tạo bản manifest mới và output directory mới cho run tái hiện.
+- Nhiều manifest lịch sử chứa absolute path cũ như `D:\LPR\...`. Trên máy khác phải sửa `image_path` hoặc tạo mapping/junction tương thích. Không sửa manifest/receipt one-shot đã dùng để đưa ra kết luận lịch sử; hãy tạo bản manifest mới và output directory mới cho run tái hiện.
 
 Dataset chính từng có 3.270 ảnh train, 397 validation và 411 test. External Phase 8/9/11 là dữ liệu đã mở, chỉ còn vai trò development evidence; không được tái sử dụng như confirmatory holdout.
 
@@ -316,7 +316,7 @@ Chỉ chạy `prepare -> phase7-cache --preflight -> phase7-cache -> evaluate ->
 
 ## 10. Lỗi thường gặp
 
-### `FileNotFoundError` với đường dẫn `D:\NEO\...`
+### `FileNotFoundError` với đường dẫn `D:\image_processing\...`
 
 Manifest/config lịch sử chứa absolute path của máy gốc. Dùng dữ liệu đúng vị trí cũ, tạo junction tương thích, hoặc tạo manifest mới với đường dẫn đã rebase.
 
