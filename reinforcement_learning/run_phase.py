@@ -1,4 +1,9 @@
-"""Unified command dispatcher for the PARSeq improvement phases."""
+"""Unified command dispatcher for the PARSeq improvement phases.
+
+Run ``python reinforcement_learning/run_phase.py --list`` to see the canonical
+entrypoint and the auxiliary commands available for every phase.  Arguments
+after the command name are forwarded unchanged to the underlying script.
+"""
 
 from __future__ import annotations
 
@@ -10,9 +15,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = {
-    "phase1": ROOT / "preprocessing_best_config" / "benchmark_multiscale_tta.py",
-    "phase2": ROOT / "preprocessing_best_config" / "benchmark_multiscale_selector_phase2.py",
-    "phase3": ROOT / "refinement_finetune" / "train_phase3_controlled_augmentation.py",
+    "phase1": ROOT / "reinforcement_learning" / "phase_1_multiscale_tta" / "run.py",
+    "phase2": ROOT / "reinforcement_learning" / "phase_2_calibrated_selector" / "run.py",
+    "phase3": ROOT / "reinforcement_learning" / "phase_3_controlled_augmentation" / "train.py",
+    "phase4": ROOT / "rl_restoration" / "train_router.py",
+    "phase4-cache": ROOT / "rl_restoration" / "build_trajectory_cache.py",
+    "phase4-evaluate": ROOT / "rl_restoration" / "evaluate_locked_policy.py",
+    "phase4-finetune": ROOT / "rl_restoration" / "finetune_with_policy.py",
+    "phase5": ROOT / "rl_restoration" / "train_ppo.py",
+    "phase5-evaluate": ROOT / "rl_restoration" / "evaluate_locked_ppo.py",
+    "phase5-runtime": ROOT / "rl_restoration" / "ppo_runtime.py",
     "phase6-cache": ROOT / "reinforcement_learning" / "phase_6_candidate_oof_ppo" / "build_candidate_cache.py",
     "phase6": ROOT / "reinforcement_learning" / "phase_6_candidate_oof_ppo" / "train.py",
     "phase7-cache": ROOT / "reinforcement_learning" / "phase_7_compact_multiscale_ppo" / "build_cache.py",
@@ -45,12 +57,46 @@ TARGETS = {
     "phase12-development-audit": ROOT / "reinforcement_learning" / "phase_12_guarded_replicated_ppo" / "audit_opened_development.py",
 }
 
+# Short names point at the primary operation of phases whose implementation has
+# several protocol-specific entrypoints.  The explicit aliases above remain the
+# preferred interface in automation because they state the intended operation.
+TARGETS.update(
+    {
+        "phase6-train": TARGETS["phase6"],
+        "phase7-train": TARGETS["phase7"],
+        "phase8": TARGETS["phase8-consensus"],
+        "phase9": TARGETS["phase9-evaluate"],
+        "phase10": TARGETS["phase10-train"],
+        "phase11": TARGETS["phase11-evaluate"],
+        "phase12": TARGETS["phase12-evaluate"],
+    }
+)
+
+
+def _print_commands() -> None:
+    print(__doc__.splitlines()[0])
+    print("\nAvailable commands:")
+    width = max(map(len, TARGETS))
+    for name in TARGETS:
+        relative = TARGETS[name].relative_to(ROOT)
+        print(f"  {name:<{width}}  {relative}")
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, add_help=False)
-    parser.add_argument("phase", choices=TARGETS)
+    parser.add_argument("phase", nargs="?", choices=TARGETS)
+    parser.add_argument("--list", action="store_true", dest="list_commands")
     args, remaining = parser.parse_known_args()
+    if args.list_commands or args.phase is None:
+        _print_commands()
+        return
+
     target = TARGETS[args.phase]
+    if not target.is_file():
+        raise SystemExit(
+            f"Entrypoint for {args.phase!r} is missing: {target}. "
+            "Restore the phase source files before running this command."
+        )
     sys.argv = [str(target), *remaining]
     runpy.run_path(str(target), run_name="__main__")
 
