@@ -31,7 +31,12 @@ for path in (ROOT, ROOT / "train_no_refinement", ROOT / "parseq", ROOT / "prepro
 
 from preprocessing_best_config.find_best_preprocessing_config import load_notebook_checkpoint  # noqa: E402
 from train_no_refinement.parseq_official_anpr_pipeline import edit_distance, normalize_plate_text  # noqa: E402
-from rl_restoration.actions import DEFAULT_ACTIONS, RestorationAction, validate_action_space  # noqa: E402
+from rl_restoration.actions import (  # noqa: E402
+    DEFAULT_ACTIONS,
+    RestorationAction,
+    get_action_profile,
+    validate_action_space,
+)
 from rl_restoration.features import image_quality_features, parseq_state_features  # noqa: E402
 from rl_restoration.reward import RewardConfig, ocr_reward  # noqa: E402
 
@@ -54,12 +59,28 @@ class ActionDataset(Dataset):
         restored = self.action.apply(original)
         restored = TF.resize(restored, list(self.img_size), interpolation=InterpolationMode.BICUBIC)
         tensor = TF.normalize(TF.to_tensor(restored), (0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-        return tensor, str(row["label"]), path, quality
+        clean_path = str(row.get("clean_path", ""))
+        if clean_path and Path(clean_path).is_file():
+            with Image.open(clean_path) as opened:
+                clean = TF.resize(opened.convert("RGB"), list(self.img_size), interpolation=InterpolationMode.BICUBIC)
+            clean_tensor = TF.to_tensor(clean)
+            has_clean = True
+        else:
+            clean_tensor = torch.zeros_like(tensor)
+            has_clean = False
+        return tensor, str(row["label"]), path, quality, clean_tensor, has_clean
 
 
 def collate_batch(batch):
-    images, labels, paths, quality = zip(*batch)
-    return torch.stack(images), list(labels), list(paths), np.stack(quality)
+    images, labels, paths, quality, clean, has_clean = zip(*batch)
+    return (
+        torch.stack(images),
+        list(labels),
+        list(paths),
+        np.stack(quality),
+        torch.stack(clean),
+        np.asarray(has_clean, dtype=bool),
+    )
 
 
 @torch.inference_mode()
@@ -76,7 +97,13 @@ def predict_action(model, model_cfg, frame, action, args, collect_state=False):
     rows = []
     features = []
     started = time.perf_counter()
-    for images, labels, paths, quality in tqdm(loader, desc=f"cache {args.split}: {action.name}", leave=False):
+    for images, labels, paths, quality, clean, has_clean in tqdm(
+        loader, desc=f"cache {args.split}: {action.name}", leave=False
+    ):
+        restored_01 = images * 0.5 + 0.5
+        mse = ((restored_01 - clean) ** 2).flatten(1).mean(1).numpy()
+        psnr_values = np.where(mse <= 1e-12, 99.0, 10.0 * np.log10(1.0 / np.maximum(mse, 1e-12)))
+        psnr_values = np.where(has_clean, psnr_values, np.nan)
         images = images.to(args.device_obj, non_blocking=True)
         logits = model(images, max_length=model_cfg.max_label_length)
         probabilities = logits.softmax(-1)
@@ -86,7 +113,9 @@ def predict_action(model, model_cfg, frame, action, args, collect_state=False):
         if collect_state:
             deep = parseq_state_features(model, images, predictions, logits).cpu().numpy()
             features.append(np.concatenate((deep, quality.astype(np.float32)), axis=1))
-        for path, target, prediction, confidence in zip(paths, labels, predictions, confidences):
+        for path, target, prediction, confidence, psnr_value in zip(
+            paths, labels, predictions, confidences, psnr_values
+        ):
             target = normalize_plate_text(target)
             distance = edit_distance(prediction, target)
             rows.append(
@@ -103,6 +132,7 @@ def predict_action(model, model_cfg, frame, action, args, collect_state=False):
                     "edit_distance": distance,
                     "exact": prediction == target,
                     "target_length": max(len(target), 1),
+                    "psnr": float(psnr_value),
                 }
             )
     result = pd.DataFrame(rows)
@@ -148,6 +178,7 @@ def summarize_cache(predictions: pd.DataFrame, actions=DEFAULT_ACTIONS):
                 "char_acc": float(1.0 - subset["edit_distance"].sum() / subset["target_length"].sum()),
                 "mean_reward": float(subset["reward"].mean()),
                 "positive_reward_rate": float((subset["reward"] > 0).mean()),
+                "mean_psnr": float(subset["psnr"].mean()) if "psnr" in subset else None,
                 "cost": action.cost,
             }
         )
@@ -163,7 +194,8 @@ def oracle_predictions(predictions: pd.DataFrame):
 
 
 def run(args):
-    validate_action_space()
+    actions = get_action_profile(args.action_profile)
+    validate_action_space(actions)
     if args.split == "test":
         locked_router = Path(args.locked_router_checkpoint).resolve() if args.locked_router_checkpoint else None
         if locked_router is None or not locked_router.exists():
@@ -190,7 +222,7 @@ def run(args):
     model, model_cfg, _ = load_notebook_checkpoint(checkpoint, args.device_obj, args.refine_iters)
     all_predictions = []
     state_features = None
-    for action in DEFAULT_ACTIONS:
+    for action in actions:
         action_predictions, action_features = predict_action(
             model, model_cfg, frame, action, args, collect_state=action.name == "stop_baseline"
         )
@@ -205,14 +237,15 @@ def run(args):
         image_paths=np.asarray(frame["image_path"].astype(str).tolist(), dtype=np.str_),
         targets=np.asarray(frame["label"].astype(str).tolist(), dtype=np.str_),
     )
-    action_summary = summarize_cache(predictions)
+    action_summary = summarize_cache(predictions, actions)
     action_summary.to_csv(output_dir / f"{args.split}_action_summary.csv", index=False)
     oracle = oracle_predictions(predictions)
     oracle.to_csv(output_dir / f"{args.split}_oracle_predictions.csv", index=False)
     summary = {
         "split": args.split,
         "samples": len(frame),
-        "actions": [action.name for action in DEFAULT_ACTIONS],
+        "actions": [action.name for action in actions],
+        "action_profile": args.action_profile,
         "feature_dimension": int(state_features.shape[1]),
         "baseline_exact": float(predictions[predictions.action == "stop_baseline"]["exact"].mean()),
         "oracle_exact": float(oracle["exact"].mean()),
@@ -244,6 +277,11 @@ def parse_args():
     parser.add_argument("--refine-iters", type=int, default=2)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--device", default="")
+    parser.add_argument(
+        "--action-profile",
+        choices=["default", "fair_restoration"],
+        default="default",
+    )
     return parser.parse_args()
 
 

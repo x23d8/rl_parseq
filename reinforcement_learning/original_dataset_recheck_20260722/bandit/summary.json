@@ -1,0 +1,46 @@
+{
+  "policy_locked_before_test": true,
+  "router_checkpoint": "D:\\NEO\\rl_pipeline\\outputs\\rl_restoration\\router_seed_123\\best_reward_router.pt",
+  "router_epoch": 20,
+  "selection_margin": 0.005,
+  "cached_parent_policy_metrics": {
+    "samples": 411,
+    "exact_acc": 0.9245742092457421,
+    "char_acc": 0.9892793329362716,
+    "fixed": 5,
+    "broken": 3,
+    "net_fixes": 2,
+    "mean_cost": 0.004092457420924574,
+    "stop_rate": 0.46228710462287104,
+    "margin": 0.005
+  },
+  "parent_policy_metrics_recomputed": {
+    "split": "test_parent_policy_locked",
+    "samples": 411,
+    "exact_acc": 0.9245742092457421,
+    "char_acc": 0.9892793329362716,
+    "cer": 0.01072066706372841
+  },
+  "comparison_policy_metrics": {
+    "split": "test_comparison_policy_locked",
+    "samples": 411,
+    "exact_acc": 0.927007299270073,
+    "char_acc": 0.9895771292435974,
+    "cer": 0.01042287075640262
+  },
+  "fixed_vs_baseline": 5,
+  "broken_vs_baseline": 3,
+  "action_distribution": {
+    "stop_baseline": 190,
+    "raw_rgb": 52,
+    "up2_baseline": 41,
+    "unwrap_up2_adaptive": 38,
+    "rl_bilateral": 23,
+    "up2_clahe": 19,
+    "homomorphic": 18,
+    "adaptive_noise": 12,
+    "clahe_gentle": 11,
+    "clahe_rl_bilateral": 7
+  },
+  "test_used_for_selection": false
+}

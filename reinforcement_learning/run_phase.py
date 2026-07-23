@@ -55,6 +55,12 @@ TARGETS = {
     "phase12-promote": ROOT / "reinforcement_learning" / "phase_12_guarded_replicated_ppo" / "promote.py",
     "phase12-runtime": ROOT / "reinforcement_learning" / "phase_12_guarded_replicated_ppo" / "runtime.py",
     "phase12-development-audit": ROOT / "reinforcement_learning" / "phase_12_guarded_replicated_ppo" / "audit_opened_development.py",
+    "auto-manifest": ROOT / "reinforcement_learning" / "auto" / "manifest.py",
+    "auto-cache": ROOT / "reinforcement_learning" / "auto" / "build_cache.py",
+    "auto-train": ROOT / "reinforcement_learning" / "auto" / "train.py",
+    "auto-evaluate": ROOT / "reinforcement_learning" / "auto" / "evaluate.py",
+    "auto-experiment": ROOT / "reinforcement_learning" / "auto" / "experiment.py",
+    "auto-runtime": ROOT / "reinforcement_learning" / "auto" / "runtime.py",
 }
 
 # Short names point at the primary operation of phases whose implementation has

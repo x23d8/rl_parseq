@@ -86,6 +86,56 @@ DEFAULT_ACTIONS: tuple[RestorationAction, ...] = (
 )
 
 
+# Geometry-preserving profile for paired restoration benchmarks.  The first
+# action is deliberately the untouched RGB input, so every learned selector
+# can abstain and every reward/image-quality delta has the same raw reference.
+FAIR_RESTORATION_ACTIONS: tuple[RestorationAction, ...] = (
+    RestorationAction(
+        "stop_baseline", "raw_rgb", 0.000, description="Keep the degraded RGB input unchanged."
+    ),
+    RestorationAction(
+        "unsharp_mild", "unsharp_mild", 0.004, description="Mild global unsharp masking."
+    ),
+    RestorationAction(
+        "clahe_gentle", "clahe_clip1_tile4", 0.005, description="Gentle local contrast enhancement."
+    ),
+    RestorationAction(
+        "homomorphic", "homomorphic_filter", 0.007, description="Correct uneven illumination."
+    ),
+    RestorationAction(
+        "wiener_deconv", "wiener_deconv", 0.010, description="Wiener deconvolution."
+    ),
+    RestorationAction(
+        "rl_bilateral",
+        "rl_deblur_bilateral_lowpass",
+        0.010,
+        description="Richardson-Lucy deconvolution with bilateral denoising.",
+    ),
+    RestorationAction(
+        "clahe_rl_bilateral",
+        "clahe_rl_deblur_bilateral",
+        0.012,
+        description="CLAHE followed by Richardson-Lucy deconvolution and denoising.",
+    ),
+    RestorationAction(
+        "adaptive_noise", "adaptive_noise_3way", 0.008, description="Fixed quality-based denoising router."
+    ),
+)
+
+
+ACTION_PROFILES = {
+    "default": DEFAULT_ACTIONS,
+    "fair_restoration": FAIR_RESTORATION_ACTIONS,
+}
+
+
+def get_action_profile(name: str = "default") -> tuple[RestorationAction, ...]:
+    try:
+        return ACTION_PROFILES[name]
+    except KeyError as exc:
+        raise KeyError(f"Unknown action profile {name!r}; choose from {sorted(ACTION_PROFILES)}") from exc
+
+
 def action_by_name(name: str) -> RestorationAction:
     for action in DEFAULT_ACTIONS:
         if action.name == name:
@@ -101,4 +151,3 @@ def validate_action_space(actions: tuple[RestorationAction, ...] = DEFAULT_ACTIO
         raise ValueError("The first action must be the zero-cost stop_baseline reference")
     for action in actions:
         get_preprocessing_config(action.preprocessing)
-

@@ -56,15 +56,21 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset-dir", default=str(DEFAULT_DATASET_DIR))
     parser.add_argument("--agent-checkpoint", default=str(DEFAULT_AGENT_CKPT))
+    parser.add_argument("--ocr-checkpoint", default=str(DEFAULT_OCR_CKPT))
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
+    parser.add_argument("--split", choices=("val", "test"), default="test")
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--device", default="")
     args = parser.parse_args()
 
-    device = torch.device(args.device or ("mps" if torch.backends.mps.is_available() else "cpu"))
+    device = torch.device(
+        args.device
+        or ("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+    )
     dataset_dir = Path(args.dataset_dir)
     output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     agent_ckpt = torch.load(args.agent_checkpoint, map_location=device, weights_only=False)
     agent_cfg = agent_ckpt["config"]
@@ -73,11 +79,12 @@ def main() -> None:
     agent.eval()
     num_steps = agent_cfg["num_steps"]
 
-    ocr_model, ocr_transform = load_ocr_model(device, DEFAULT_OCR_CKPT)
+    ocr_checkpoint = Path(args.ocr_checkpoint).resolve()
+    ocr_model, ocr_transform = load_ocr_model(device, ocr_checkpoint)
 
-    test_ds = BlurPairDataset(dataset_dir, "test", limit=args.limit)
-    manifest = test_ds.frame
-    loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
+    dataset = BlurPairDataset(dataset_dir, args.split, limit=args.limit)
+    manifest = dataset.frame
+    loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
     rows = []
     idx = 0
@@ -103,6 +110,7 @@ def main() -> None:
         for i in range(len(blurred_np)):
             label = normalize_plate_text(batch_labels[i])
             rows.append({
+                "image_path": str((dataset_dir / manifest.iloc[idx - len(blurred_np) + i]["blurred_path"]).resolve()),
                 "blur_kind": blur_kinds[i],
                 "label": label,
                 "psnr_blurred": psnr(blurred_np[i], clean_np[i]),
@@ -126,10 +134,12 @@ def main() -> None:
             })
 
     df = pd.DataFrame(rows)
-    df.to_csv(output_dir / "eval_test_predictions.csv", index=False)
+    df.to_csv(output_dir / f"eval_{args.split}_predictions.csv", index=False)
 
     summary = {
+        "split": args.split,
         "num_samples": len(df),
+        "ocr_checkpoint": str(ocr_checkpoint),
         "psnr": {k: float(df[f"psnr_{k}"].mean()) for k in ["blurred", "classical", "rl"]},
         "ssim": {k: float(df[f"ssim_{k}"].mean()) for k in ["blurred", "classical", "rl"]},
         "exact_acc": {k: float(df[f"exact_{k}"].mean()) for k in ["blurred", "classical", "rl", "clean"]},
@@ -144,7 +154,9 @@ def main() -> None:
             for kind, g in df.groupby("blur_kind")
         },
     }
-    (output_dir / "eval_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    (output_dir / f"eval_{args.split}_summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 

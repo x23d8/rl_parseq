@@ -1,0 +1,197 @@
+{
+  "protocol": {
+    "role": "opened_common_dataset_diagnostic_not_promotable",
+    "dataset_dir": "D:\\NEO\\rl_pipeline\\parseq_rl_deblur_data\\outputs\\rl_deblur\\dataset",
+    "splits": {
+      "val": {
+        "path": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\common_rl_benchmark\\manifests\\val_manifest.csv",
+        "sha256": "82cc9855daffb5dad7c391250e11cf41f118598519ef22745a83d506b5321a3a",
+        "samples": 367
+      },
+      "test": {
+        "path": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\common_rl_benchmark\\manifests\\test_manifest.csv",
+        "sha256": "4ed7ec2ec1c5db57ba84a8048450b34e2e3a0212cc4ab09006b65ff56e1dbfe5",
+        "samples": 367
+      }
+    },
+    "parseq_checkpoint": "D:\\NEO\\rl_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\best_phase3_parseq_anpr.pt",
+    "parseq_sha256": "d1dd1c147fa2b67a3e650673e54ade86e6c592f8d85a9169bc01be3b59457b0d",
+    "refine_iters": 1,
+    "common_reference": "raw blurred image + fixed PARSeq",
+    "no_rl_comparison_reference": "classical unsharp + fixed PARSeq",
+    "threshold_retuning": false
+  },
+  "checkpoints": {
+    "pixelrl": "D:\\NEO\\rl_pipeline\\outputs\\rl_deblur\\checkpoints\\best_deblur_agent.pt",
+    "phase4": "D:\\NEO\\rl_pipeline\\outputs\\rl_restoration\\router_seed_123\\best_reward_router.pt",
+    "phase5": "D:\\NEO\\rl_pipeline\\outputs\\rl_restoration\\ppo_prior_seed_123\\best_ppo_restoration_policy.pt",
+    "phase6": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\phase_6_candidate_oof_ppo\\results\\run_residual_seed_123\\best_candidate_oof_ppo.pt",
+    "phase7": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\run_seed_725\\best_candidate_oof_ppo.pt"
+  },
+  "results": {
+    "val": {
+      "raw_parseq": {
+        "samples": 367,
+        "exact_acc": 0.7547683923705722,
+        "char_acc": 0.9058135758363105,
+        "cer": 0.09418642416368951,
+        "fixed_vs_raw": 0,
+        "broken_vs_raw": 0,
+        "net_fixes_vs_raw": 0,
+        "psnr": 20.146395319621696,
+        "ssim": 0.7330785998567693
+      },
+      "classical_unsharp": {
+        "samples": 367,
+        "exact_acc": 0.7602179836512262,
+        "char_acc": 0.9171809028905489,
+        "cer": 0.08281909710945112,
+        "fixed_vs_raw": 8,
+        "broken_vs_raw": 6,
+        "net_fixes_vs_raw": 2,
+        "psnr": 21.03493228590959,
+        "ssim": 0.7778523030567221
+      },
+      "train_baseline": {
+        "samples": 367,
+        "exact_acc": 0.659400544959128,
+        "char_acc": 0.8730107177655083,
+        "cer": 0.1269892822344917,
+        "fixed_vs_raw": 9,
+        "broken_vs_raw": 44,
+        "net_fixes_vs_raw": -35
+      },
+      "pixelrl_a2c": {
+        "samples": 367,
+        "exact_acc": 0.7602179836512262,
+        "char_acc": 0.9516076648262423,
+        "cer": 0.04839233517375771,
+        "fixed_vs_raw": 22,
+        "broken_vs_raw": 20,
+        "net_fixes_vs_raw": 2,
+        "psnr": 22.43158911120082,
+        "ssim": 0.84357148641164
+      },
+      "contextual_bandit_phase4": {
+        "samples": 367,
+        "exact_acc": 0.7193460490463215,
+        "char_acc": 0.8967197141929197,
+        "cer": 0.10328028580708022,
+        "fixed_vs_raw": 4,
+        "broken_vs_raw": 17,
+        "net_fixes_vs_raw": -13
+      },
+      "ppo_phase5": {
+        "samples": 367,
+        "exact_acc": 0.7220708446866485,
+        "char_acc": 0.8960701526469633,
+        "cer": 0.1039298473530367,
+        "fixed_vs_raw": 4,
+        "broken_vs_raw": 16,
+        "net_fixes_vs_raw": -12
+      },
+      "candidate_ppo_phase6": {
+        "samples": 367,
+        "exact_acc": 0.7547683923705722,
+        "char_acc": 0.9152322182526794,
+        "cer": 0.08476778174732055,
+        "fixed_vs_raw": 2,
+        "broken_vs_raw": 2,
+        "net_fixes_vs_raw": 0
+      },
+      "compact_ppo_phase7": {
+        "samples": 367,
+        "exact_acc": 0.7438692098092643,
+        "char_acc": 0.9103605066580058,
+        "cer": 0.08963949334199416,
+        "fixed_vs_raw": 10,
+        "broken_vs_raw": 14,
+        "net_fixes_vs_raw": -4
+      }
+    },
+    "test": {
+      "raw_parseq": {
+        "samples": 367,
+        "exact_acc": 0.7220708446866485,
+        "char_acc": 0.8889612504070336,
+        "cer": 0.11103874959296646,
+        "fixed_vs_raw": 0,
+        "broken_vs_raw": 0,
+        "net_fixes_vs_raw": 0,
+        "psnr": 20.573336690470576,
+        "ssim": 0.745533102381855
+      },
+      "classical_unsharp": {
+        "samples": 367,
+        "exact_acc": 0.7384196185286104,
+        "char_acc": 0.9023119505047216,
+        "cer": 0.09768804949527841,
+        "fixed_vs_raw": 12,
+        "broken_vs_raw": 6,
+        "net_fixes_vs_raw": 6,
+        "psnr": 21.541991386248625,
+        "ssim": 0.7933543134596204
+      },
+      "train_baseline": {
+        "samples": 367,
+        "exact_acc": 0.6512261580381471,
+        "char_acc": 0.8671442526864214,
+        "cer": 0.13285574731357863,
+        "fixed_vs_raw": 14,
+        "broken_vs_raw": 40,
+        "net_fixes_vs_raw": -26
+      },
+      "pixelrl_a2c": {
+        "samples": 367,
+        "exact_acc": 0.7520435967302452,
+        "char_acc": 0.9394334093129274,
+        "cer": 0.06056659068707262,
+        "fixed_vs_raw": 32,
+        "broken_vs_raw": 21,
+        "net_fixes_vs_raw": 11,
+        "psnr": 22.835172441250265,
+        "ssim": 0.8502350818399276
+      },
+      "contextual_bandit_phase4": {
+        "samples": 367,
+        "exact_acc": 0.7411444141689373,
+        "char_acc": 0.8928687723868447,
+        "cer": 0.10713122761315533,
+        "fixed_vs_raw": 9,
+        "broken_vs_raw": 2,
+        "net_fixes_vs_raw": 7
+      },
+      "ppo_phase5": {
+        "samples": 367,
+        "exact_acc": 0.7465940054495913,
+        "char_acc": 0.896125040703354,
+        "cer": 0.10387495929664604,
+        "fixed_vs_raw": 11,
+        "broken_vs_raw": 2,
+        "net_fixes_vs_raw": 9
+      },
+      "candidate_ppo_phase6": {
+        "samples": 367,
+        "exact_acc": 0.7411444141689373,
+        "char_acc": 0.9019863236730706,
+        "cer": 0.09801367632692934,
+        "fixed_vs_raw": 8,
+        "broken_vs_raw": 1,
+        "net_fixes_vs_raw": 7
+      },
+      "compact_ppo_phase7": {
+        "samples": 367,
+        "exact_acc": 0.7084468664850136,
+        "char_acc": 0.8931943992184956,
+        "cer": 0.10680560078150439,
+        "fixed_vs_raw": 15,
+        "broken_vs_raw": 20,
+        "net_fixes_vs_raw": -5
+      }
+    }
+  },
+  "per_sample": {
+    "val": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\common_rl_benchmark\\val_predictions.csv",
+    "test": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\common_rl_benchmark\\test_predictions.csv"
+  }
+}

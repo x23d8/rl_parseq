@@ -18,7 +18,7 @@ for path in (ROOT, ROOT / "train_no_refinement", ROOT / "parseq", ROOT / "prepro
         sys.path.insert(0, str(path))
 
 from preprocessing_best_config.find_best_preprocessing_config import load_notebook_checkpoint  # noqa: E402
-from rl_restoration.actions import DEFAULT_ACTIONS  # noqa: E402
+from rl_restoration.actions import get_action_profile  # noqa: E402
 from rl_restoration.finetune_with_policy import FixedActionDataset, evaluate, make_loader  # noqa: E402
 from rl_restoration.policy import RewardRouter  # noqa: E402
 from rl_restoration.ppo_policy import RestorationActorCritic  # noqa: E402
@@ -54,7 +54,8 @@ def run(args):
     output_dir = Path(args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
-    action_names = [action.name for action in DEFAULT_ACTIONS]
+    profile = checkpoint.get("action_profile", args.action_profile)
+    action_names = [action.name for action in get_action_profile(profile)]
     if checkpoint["action_names"] != action_names:
         raise ValueError("PPO action space differs from current registry")
     test = load_cache(Path(args.cache_dir), "test", action_names)
@@ -137,6 +138,11 @@ def parse_args():
     parser.add_argument("--num-workers", type=int, default=0)
     parser.add_argument("--refine-iters", type=int, default=2)
     parser.add_argument("--device", default="")
+    parser.add_argument(
+        "--action-profile",
+        choices=["default", "fair_restoration"],
+        default="default",
+    )
     return parser.parse_args()
 
 

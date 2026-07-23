@@ -1,0 +1,33 @@
+{
+  "split": "val",
+  "samples": 367,
+  "actions": [
+    "stop_baseline",
+    "raw_rgb",
+    "clahe_gentle",
+    "homomorphic",
+    "rl_bilateral",
+    "clahe_rl_bilateral",
+    "adaptive_noise",
+    "up2_baseline",
+    "up2_clahe",
+    "unwrap_up2_adaptive"
+  ],
+  "feature_dimension": 783,
+  "baseline_exact": 0.6512261580381471,
+  "oracle_exact": 0.7956403269754768,
+  "oracle_char_acc": 0.9391077824812765,
+  "oracle_action_distribution": {
+    "stop_baseline": 255,
+    "raw_rgb": 63,
+    "up2_baseline": 14,
+    "clahe_gentle": 14,
+    "homomorphic": 8,
+    "clahe_rl_bilateral": 4,
+    "up2_clahe": 4,
+    "rl_bilateral": 4,
+    "unwrap_up2_adaptive": 1
+  },
+  "checkpoint": "D:\\NEO\\rl_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\best_phase3_parseq_anpr.pt",
+  "manifest": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\common_rl_benchmark\\manifests\\test_manifest.csv"
+}

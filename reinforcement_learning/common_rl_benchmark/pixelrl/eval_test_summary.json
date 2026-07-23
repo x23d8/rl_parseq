@@ -1,0 +1,47 @@
+{
+  "split": "test",
+  "num_samples": 367,
+  "ocr_checkpoint": "D:\\NEO\\rl_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\best_phase3_parseq_anpr.pt",
+  "psnr": {
+    "blurred": 20.573336690470576,
+    "classical": 21.541991386248625,
+    "rl": 22.835172441250265
+  },
+  "ssim": {
+    "blurred": 0.745533102381855,
+    "classical": 0.7933543134596204,
+    "rl": 0.8502350818399276
+  },
+  "exact_acc": {
+    "blurred": 0.7220708446866485,
+    "classical": 0.7384196185286104,
+    "rl": 0.7520435967302452,
+    "clean": 0.9509536784741145
+  },
+  "cer": {
+    "blurred": 0.11007525626054236,
+    "classical": 0.0969702867523031,
+    "rl": 0.06106894165477272,
+    "clean": 0.006819557977596125
+  },
+  "by_blur_kind": {
+    "defocus": {
+      "psnr_blurred": 18.443363493922888,
+      "psnr_rl": 21.563371364224157,
+      "exact_blurred": 0.4827586206896552,
+      "exact_rl": 0.6551724137931034
+    },
+    "gaussian": {
+      "psnr_blurred": 22.244666641087303,
+      "psnr_rl": 25.004369360173172,
+      "exact_blurred": 0.9193548387096774,
+      "exact_rl": 0.8709677419354839
+    },
+    "motion": {
+      "psnr_blurred": 20.88697430403796,
+      "psnr_rl": 21.87886147265648,
+      "exact_blurred": 0.7480314960629921,
+      "exact_rl": 0.7244094488188977
+    }
+  }
+}

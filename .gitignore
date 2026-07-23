@@ -34,3 +34,16 @@ outputs/
 .DS_Store
 Thumbs.db
 parseq
+# Keep the reproducible fair-benchmark code and compact reports, while local
+# datasets, caches, checkpoints and per-image predictions remain untracked.
+/reinforcement_learning/fair_restoration_benchmark/*
+!/reinforcement_learning/fair_restoration_benchmark/build_dataset.py
+!/reinforcement_learning/fair_restoration_benchmark/evaluate_experiments.py
+!/reinforcement_learning/fair_restoration_benchmark/REPORT.md
+!/reinforcement_learning/fair_restoration_benchmark/results/
+/reinforcement_learning/fair_restoration_benchmark/results/*
+!/reinforcement_learning/fair_restoration_benchmark/results/multi_summary.csv
+!/reinforcement_learning/fair_restoration_benchmark/results/blur_summary.csv
+!/reinforcement_learning/fair_restoration_benchmark/results/multi_by_degradation.csv
+!/reinforcement_learning/fair_restoration_benchmark/results/summary.json
+/reinforcement_learning/auto/

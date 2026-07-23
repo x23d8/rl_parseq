@@ -1,0 +1,61 @@
+{
+  "policy_locked_before_test": true,
+  "algorithm": "bc_initialized_ppo_gae_two_step",
+  "ppo_checkpoint": "D:\\NEO\\rl_pipeline\\outputs\\rl_restoration\\ppo_prior_seed_123\\best_ppo_restoration_policy.pt",
+  "ppo_seed": 123,
+  "ppo_epoch": 22,
+  "first_margin": 0.1,
+  "revise_margin": 0.0,
+  "cached_parent_ocr_policy_metrics": {
+    "samples": 411,
+    "exact_acc": 0.9245742092457421,
+    "char_acc": 0.9892793329362716,
+    "fixed": 5,
+    "broken": 3,
+    "net_fixes": 2,
+    "stop_rate": 0.48661800486618007,
+    "revise_rate": 0.0,
+    "mean_cost": 0.0039002433090024337,
+    "first_margin": 0.1,
+    "revise_margin": 0.0
+  },
+  "parent_ocr_recomputed": {
+    "split": "test_parent_ppo_locked",
+    "samples": 411,
+    "exact_acc": 0.9245742092457421,
+    "char_acc": 0.9892793329362716,
+    "cer": 0.01072066706372841
+  },
+  "comparison_ocr_metrics": {
+    "split": "test_comparison_ppo_locked",
+    "samples": 411,
+    "exact_acc": 0.927007299270073,
+    "char_acc": 0.9895771292435974,
+    "cer": 0.01042287075640262
+  },
+  "action_distribution": {
+    "stop_baseline": 200,
+    "raw_rgb": 53,
+    "unwrap_up2_adaptive": 39,
+    "up2_baseline": 38,
+    "rl_bilateral": 22,
+    "up2_clahe": 19,
+    "homomorphic": 18,
+    "clahe_gentle": 11,
+    "clahe_rl_bilateral": 6,
+    "adaptive_noise": 5
+  },
+  "first_action_distribution": {
+    "stop_baseline": 200,
+    "raw_rgb": 53,
+    "unwrap_up2_adaptive": 39,
+    "up2_baseline": 38,
+    "rl_bilateral": 22,
+    "up2_clahe": 19,
+    "homomorphic": 18,
+    "clahe_gentle": 11,
+    "clahe_rl_bilateral": 6,
+    "adaptive_noise": 5
+  },
+  "test_used_for_selection": false
+}

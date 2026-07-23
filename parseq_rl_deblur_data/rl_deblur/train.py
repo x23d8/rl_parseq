@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -238,6 +239,7 @@ def evaluate(model: FCNActorCritic, loader: DataLoader, cfg: TrainConfig, device
 
 
 def fit(cfg: TrainConfig, device: str | None = None) -> dict:
+    random.seed(cfg.seed)
     torch.manual_seed(cfg.seed)
     np.random.seed(cfg.seed)
     if device is None:
@@ -253,6 +255,10 @@ def fit(cfg: TrainConfig, device: str | None = None) -> dict:
     val_loader = DataLoader(val_ds, batch_size=cfg.batch_size, shuffle=False, num_workers=0)
 
     model = FCNActorCritic(channels=cfg.channels, rmc_kernel_size=cfg.rmc_kernel_size).to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr)
+    history = []
+    start_epoch = 1
+    best_gain = -1e9
     resume_info = None
     if cfg.resume_checkpoint:
         resume_path = Path(cfg.resume_checkpoint)
@@ -271,15 +277,33 @@ def fit(cfg: TrainConfig, device: str | None = None) -> dict:
             )
 
         model.load_state_dict(resume_ckpt["model_state_dict"])
+        resume_epoch = int(resume_ckpt.get("epoch") or 0)
+        start_epoch = resume_epoch + 1
+        previous_val = resume_ckpt.get("val_metrics") or {}
+        best_gain = float(resume_ckpt.get("best_gain", previous_val.get("psnr_gain", -1e9)))
+        exact_resume = "optimizer_state_dict" in resume_ckpt
+        if exact_resume:
+            optimizer.load_state_dict(resume_ckpt["optimizer_state_dict"])
+            history = list(resume_ckpt.get("history", []))
+            if "python_rng_state" in resume_ckpt:
+                random.setstate(resume_ckpt["python_rng_state"])
+            if "numpy_rng_state" in resume_ckpt:
+                np.random.set_state(resume_ckpt["numpy_rng_state"])
+            if "torch_rng_state" in resume_ckpt:
+                torch.set_rng_state(resume_ckpt["torch_rng_state"])
+            if device.type == "cuda" and "cuda_rng_state_all" in resume_ckpt:
+                torch.cuda.set_rng_state_all(resume_ckpt["cuda_rng_state_all"])
         resume_info = {
             "checkpoint": str(resume_path),
-            "epoch": resume_ckpt.get("epoch"),
+            "epoch": resume_epoch,
             "config": resume_cfg,
-            "val_metrics": resume_ckpt.get("val_metrics"),
+            "val_metrics": previous_val,
+            "mode": "exact_training_state" if exact_resume else "weights_only_fresh_optimizer",
         }
-        print(f"Resumed agent weights from {resume_path} (epoch={resume_info['epoch']}).")
-
-    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr)
+        print(
+            f"Resumed from {resume_path} at epoch {resume_epoch} "
+            f"(mode={resume_info['mode']}, next_epoch={start_epoch})."
+        )
 
     ocr_model, ocr_transform = (None, None)
     if cfg.cer_reward_weight > 0 or cfg.logconf_reward_weight > 0:
@@ -291,12 +315,11 @@ def fit(cfg: TrainConfig, device: str | None = None) -> dict:
     print(f"[epoch 0 / before training] val psnr_before={base_val['psnr_before']:.3f} "
           f"psnr_after={base_val['psnr_after']:.3f} gain={base_val['psnr_gain']:.3f}")
 
-    history = []
-    best_gain = -1e9
     best_path = output_dir / "checkpoints" / "best_deblur_agent.pt"
+    last_path = output_dir / "checkpoints" / "last_training_state.pt"
     best_path.parent.mkdir(parents=True, exist_ok=True)
 
-    for epoch in range(1, cfg.epochs + 1):
+    for epoch in range(start_epoch, cfg.epochs + 1):
         start = time.time()
         model.train()
         epoch_loss, epoch_reward, epoch_ocr_bonus, n_batches = 0.0, 0.0, 0.0, 0
@@ -344,6 +367,25 @@ def fit(cfg: TrainConfig, device: str | None = None) -> dict:
                 "resume_info": resume_info,
             }, best_path)
 
+        state = {
+            "model_state_dict": model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "config": asdict(cfg),
+            "epoch": epoch,
+            "val_metrics": val_metrics,
+            "best_gain": best_gain,
+            "best_checkpoint": str(best_path),
+            "history": history,
+            "resume_info": resume_info,
+            "python_rng_state": random.getstate(),
+            "numpy_rng_state": np.random.get_state(),
+            "torch_rng_state": torch.get_rng_state(),
+            "cuda_rng_state_all": torch.cuda.get_rng_state_all() if device.type == "cuda" else None,
+        }
+        temporary_state = last_path.with_suffix(".tmp")
+        torch.save(state, temporary_state)
+        temporary_state.replace(last_path)
+
     history_df = pd.DataFrame(history)
     history_df.to_csv(output_dir / "history.csv", index=False)
 
@@ -353,7 +395,8 @@ def fit(cfg: TrainConfig, device: str | None = None) -> dict:
         "base_val_metrics": base_val,
         "best_val_psnr_gain": best_gain,
         "best_checkpoint": str(best_path),
-        "final_val_metrics": history[-1] if history else None,
+        "last_training_state": str(last_path),
+        "final_val_metrics": history[-1] if history else base_val,
     }
     (output_dir / "train_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     return summary
@@ -373,7 +416,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cer-reward-weight", type=float, default=0.0, help="beta: weight on per-step CER reduction")
     parser.add_argument("--logconf-reward-weight", type=float, default=0.0, help="gamma: weight on per-step OCR log-confidence increase")
     parser.add_argument("--ocr-checkpoint", default=str(DEFAULT_OCR_CKPT))
-    parser.add_argument("--resume-checkpoint", default=None, help="Warm-start agent weights from an existing RL checkpoint")
+    parser.add_argument(
+        "--resume-checkpoint",
+        default=None,
+        help=(
+            "Resume exactly from last_training_state.pt; older best-agent checkpoints "
+            "resume weights/epoch with a fresh optimizer."
+        ),
+    )
     parser.add_argument("--limit-train", type=int, default=None)
     parser.add_argument("--limit-val", type=int, default=None)
     parser.add_argument("--device", default="")

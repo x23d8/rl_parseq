@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from rl_restoration.actions import DEFAULT_ACTIONS  # noqa: E402
+from rl_restoration.actions import get_action_profile  # noqa: E402
 from rl_restoration.policy import RewardRouter, standardize_features  # noqa: E402
 
 
@@ -129,7 +129,8 @@ def run(args):
     output_dir = Path(args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
-    action_names = [action.name for action in DEFAULT_ACTIONS]
+    actions = get_action_profile(args.action_profile)
+    action_names = [action.name for action in actions]
     train = load_cache(cache_dir, "train", action_names)
     val = load_cache(cache_dir, "val", action_names)
     train_x, val_x, feature_mean, feature_std = standardize_features(train["features"], val["features"])
@@ -201,6 +202,7 @@ def run(args):
                     "epoch": epoch,
                     "validation_metrics": selected_metrics,
                     "seed": args.seed,
+                    "action_profile": args.action_profile,
                 },
                 best_path,
             )
@@ -270,6 +272,11 @@ def parse_args():
     parser.add_argument("--margins", default="0,0.005,0.01,0.02,0.03,0.05,0.08")
     parser.add_argument("--seed", type=int, default=20260715)
     parser.add_argument("--device", default="")
+    parser.add_argument(
+        "--action-profile",
+        choices=["default", "fair_restoration"],
+        default="default",
+    )
     return parser.parse_args()
 
 

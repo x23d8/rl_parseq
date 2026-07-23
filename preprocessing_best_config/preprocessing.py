@@ -206,6 +206,12 @@ SWEEP_CONFIGS = [
         sharpen_alpha=0.5,
     ),
     PreprocessingConfig(
+        name="wavelet_haar",
+        course_topic="3.5 Wavelet denoising",
+        description="Pure single-level Haar soft-threshold denoising without CLAHE or sharpening.",
+        denoise="wavelet_haar",
+    ),
+    PreprocessingConfig(
         name="otsu_threshold",
         course_topic="1.2 Basic binary processing",
         description="CLAHE followed by global Otsu binarization.",
@@ -407,6 +413,22 @@ SWEEP_CONFIGS = [
     # Multi-stage restoration and enhancement combinations. Deblurring is
     # deliberately followed by a mild low-pass/edge-preserving filter to
     # suppress the ringing and amplified noise produced by inverse filtering.
+    PreprocessingConfig(
+        name="wiener_deconv",
+        course_topic="3 Image restoration",
+        description="Pure mild Wiener deconvolution without a following denoiser.",
+        deblur="wiener_deconv",
+        deblur_sigma=0.7,
+        deblur_balance=0.03,
+    ),
+    PreprocessingConfig(
+        name="richardson_lucy",
+        course_topic="3 Image restoration",
+        description="Pure three-iteration Richardson-Lucy restoration without CLAHE or denoising.",
+        deblur="richardson_lucy",
+        deblur_sigma=0.7,
+        deblur_iterations=3,
+    ),
     PreprocessingConfig(
         name="wiener_deconv_gaussian_lowpass",
         course_topic="3 Image restoration",

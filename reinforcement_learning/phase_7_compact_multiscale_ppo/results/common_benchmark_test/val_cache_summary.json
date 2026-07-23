@@ -1,0 +1,52 @@
+{
+  "split": "val",
+  "samples": 367,
+  "actions": [
+    "baseline",
+    "unwrap_z1.07_up2_clahe_rl_deblur_bilateral",
+    "full_z0.93_up3_clahe_clip1_tile4",
+    "unwrap_z1.00_up3_train_baseline",
+    "full_z0.85_up2_adaptive_noise_3way",
+    "full_z1.00_up2_clahe_rl_deblur_bilateral",
+    "unwrap_z0.93_up3_adaptive_noise_3way",
+    "full_z1.15_up3_train_baseline",
+    "full_z1.15_up2_train_baseline"
+  ],
+  "candidate_shape": [
+    367,
+    9,
+    781
+  ],
+  "baseline_exact": 0.6512261580381471,
+  "oracle_exact": 0.8174386920980926,
+  "oracle_gain_points": 16.62125340599455,
+  "checkpoint": "D:\\NEO\\rl_pipeline\\outputs\\phase3_controlled_aug_full_frozen_eval\\best_phase3_parseq_anpr.pt",
+  "checkpoint_sha256": "d1dd1c147fa2b67a3e650673e54ade86e6c592f8d85a9169bc01be3b59457b0d",
+  "artifacts": {
+    "candidate_features": {
+      "path": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\common_benchmark_test\\val_candidate_features.npz",
+      "sha256": "267b4300ceb6fe420f3cbff7accf8b0c5b32cbce8a93022fcd5fd8ef608a83c4"
+    },
+    "state_features": {
+      "path": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\common_benchmark_test\\val_state_features.npz",
+      "sha256": "78057b87604ab65664b4f4a4ee1483c59a0d8049011a42f5b143b4aea56f0655"
+    },
+    "action_trajectories": {
+      "path": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\phase_7_compact_multiscale_ppo\\results\\common_benchmark_test\\val_action_trajectories.csv",
+      "sha256": "a53fe7d3e99e8a887633720e7026409d6d9c3649fc7748b7dfd0d6bbea607d99"
+    }
+  },
+  "refine_iters": 1,
+  "test_loaded": false,
+  "manifest": {
+    "path": "D:\\NEO\\rl_pipeline\\reinforcement_learning\\common_rl_benchmark\\manifests\\test_manifest.csv",
+    "sha256": "4ed7ec2ec1c5db57ba84a8048450b34e2e3a0212cc4ab09006b65ff56e1dbfe5",
+    "source_rows": 367,
+    "selected_rows": 367,
+    "external_contract": false,
+    "group_disjoint": false,
+    "input_contract": null
+  },
+  "group_audit": null,
+  "power_contract": null
+}

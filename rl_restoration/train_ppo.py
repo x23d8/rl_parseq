@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from rl_restoration.actions import DEFAULT_ACTIONS  # noqa: E402
+from rl_restoration.actions import get_action_profile  # noqa: E402
 from rl_restoration.ppo_policy import RestorationActorCritic  # noqa: E402
 from rl_restoration.policy import RewardRouter  # noqa: E402
 from rl_restoration.sequential_env import OfflineSequentialRestorationEnv  # noqa: E402
@@ -237,7 +237,8 @@ def run(args):
     output_dir = Path(args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
-    action_names = [action.name for action in DEFAULT_ACTIONS]
+    actions = get_action_profile(args.action_profile)
+    action_names = [action.name for action in actions]
     train = load_cache(Path(args.cache_dir), "train", action_names)
     val = load_cache(Path(args.cache_dir), "val", action_names)
     train_x, val_x, feature_mean, feature_std = standardize(train["features"], val["features"])
@@ -304,6 +305,7 @@ def run(args):
                     "validation_metrics": selected,
                     "algorithm": "bc_initialized_ppo_gae_two_step",
                     "test_used": False,
+                    "action_profile": args.action_profile,
                 },
                 checkpoint_path,
             )
@@ -381,6 +383,11 @@ def parse_args():
     parser.add_argument("--candidate-summary", action="store_true")
     parser.add_argument("--margins", default="0,0.025,0.05,0.1,0.2,0.3,0.5")
     parser.add_argument("--device", default="")
+    parser.add_argument(
+        "--action-profile",
+        choices=["default", "fair_restoration"],
+        default="default",
+    )
     return parser.parse_args()
 
 

@@ -1,0 +1,6 @@
+configuration,recognizer,val_samples,val_exact,val_cer,test_samples,test_exact,test_cer,test_fixed_vs_parent_baseline,test_broken_vs_parent_baseline,comparison_status
+Original fine-tuned PARSeq,Phase-3 parent,397,0.9269521411,0.0134762634,411,0.9197080292,0.0113162597,0,0,fair shared-recognizer baseline
+Contextual Bandit,Phase-3 parent,397,0.9445843829,0.0110260337,411,0.9245742092,0.0107206671,5,3,fair shared-recognizer comparison
+Two-stage PPO,Phase-3 parent,397,0.9471032746,0.0107197550,411,0.9245742092,0.0107206671,5,3,fair shared-recognizer comparison
+Contextual Bandit + hard-aware PARSeq,Bandit hard-aware epoch 8,397,0.9445843829,0.0110260337,411,0.9270072993,0.0104228708,,,separately fine-tuned recognizer
+Two-stage PPO + hard-aware PARSeq,PPO hard-aware epoch 8,397,0.9471032746,0.0107197550,411,0.9270072993,0.0104228708,,,separately fine-tuned recognizer
